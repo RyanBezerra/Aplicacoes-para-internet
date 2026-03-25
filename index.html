@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Imobiliária Horizonte — imóveis, visitas agendadas e atendimento. Formulário de interesse e tour em vídeo.">
+  <title>Ryan do Nascimento Bezerra — Imobiliária Horizonte</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #f0f4f8;
+      --text-muted: #b8c5d3;
+      --accent: #5eb8ff;
+      --accent-hover: #8ad0ff;
+      --border: #3d4f66;
+      --focus-ring: #ffd166;
+      --error: #ff6b6b;
+      --success: #51cf66;
+      --link: #74c0fc;
+      --link-visited: #b197fc;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+      font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.75rem;
+      padding: 0.65rem 1rem;
+      background: var(--focus-ring);
+      color: var(--bg);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 0.35rem;
+      z-index: 9999;
+      transform: translateY(-150%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 3px solid var(--text);
+      outline-offset: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem clamp(1rem, 4vw, 2rem);
+    }
+
+    .masthead {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .masthead h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    nav a:visited {
+      color: var(--link-visited);
+    }
+
+    nav a:hover {
+      color: var(--accent-hover);
+    }
+
+    main,
+    aside {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.5rem clamp(1rem, 4vw, 2rem);
+    }
+
+    aside {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.65rem);
+      color: var(--text);
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      max-width: 65ch;
+    }
+
+    .lead {
+      font-size: 1.05em;
+      color: var(--text);
+    }
+
+    .grid-imoveis {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    article {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+    }
+
+    article h3 {
+      color: var(--text);
+    }
+
+    article p {
+      margin-top: 0.5rem;
+    }
+
+    .media-block {
+      margin: 1.5rem 0;
+    }
+
+    video,
+    audio {
+      width: 100%;
+      max-width: 42rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    figure {
+      margin: 1.5rem 0;
+      max-width: 48rem;
+    }
+
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9em;
+      color: var(--text-muted);
+    }
+
+    fieldset {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      background: var(--surface);
+    }
+
+    legend {
+      padding: 0 0.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .field {
+      margin: 0.85rem 0;
+    }
+
+    .field label,
+    .field-inline legend {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hint {
+      display: block;
+      font-size: 0.85em;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      max-width: 32rem;
+      padding: 0.55rem 0.65rem;
+      font: inherit;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.35rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      max-width: 32rem;
+      accent-color: var(--accent);
+    }
+
+    textarea {
+      min-height: 6rem;
+      resize: vertical;
+    }
+
+    .radios,
+    .checks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .radios label,
+    .checks label {
+      font-weight: 400;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .radios input,
+    .checks input {
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+    }
+
+    .output-budget {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    button[type="submit"] {
+      font: inherit;
+      font-weight: 700;
+      padding: 0.65rem 1.25rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 0.35rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--accent-hover);
+    }
+
+    input:user-invalid,
+    select:user-invalid,
+    textarea:user-invalid {
+      border-color: var(--error);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.95em;
+    }
+
+    @media (min-width: 48rem) {
+      .layout-aside-wrap {
+        display: grid;
+        grid-template-columns: 1fr min(22rem, 32vw);
+        gap: 2rem;
+        align-items: start;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 0 clamp(1rem, 4vw, 2rem);
+      }
+
+      .layout-aside-wrap main {
+        margin: 0;
+        padding: 1.5rem 0;
+      }
+
+      .layout-aside-wrap aside {
+        margin: 1.5rem 0 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
+
+  <header>
+    <div class="masthead">
+      <h1>Imobiliária Horizonte</h1>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#imoveis">Imóveis</a></li>
+          <li><a href="#midia">Mídia</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="layout-aside-wrap">
+    <main id="conteudo-principal">
+      <section id="inicio" aria-labelledby="titulo-inicio">
+        <h2 id="titulo-inicio">Seu novo lar começa aqui</h2>
+        <p class="lead">Na Imobiliária Horizonte você encontra apartamentos, casas e sobrados nas melhores regiões da cidade, com condições especiais de financiamento.</p>
+        <p class="lead"><strong>Ligue agora:</strong> <a href="tel:+551140001234">(11) 4000-1234</a> ou preencha o <a href="#contato">formulário de interesse</a>.</p>
+      </section>
+
+      <section id="imoveis" aria-labelledby="titulo-imoveis">
+        <h2 id="titulo-imoveis">Imóveis em destaque</h2>
+        <div class="grid-imoveis">
+          <article>
+            <h3>Apartamento 2 quartos — Centro</h3>
+            <p>Ideal para quem busca praticidade e mobilidade. Próximo a metrô, mercados e escolas.</p>
+            <p><strong>Preço:</strong> R$ 320.000</p>
+            <p><a href="#contato">Simular visita</a></p>
+          </article>
+          <article>
+            <h3>Casa 3 quartos — Bairro Jardim</h3>
+            <p>Casa espaçosa com quintal e área gourmet, perfeita para a família que gosta de receber amigos.</p>
+            <p><strong>Preço:</strong> R$ 580.000</p>
+            <p><a href="#contato">Simular visita</a></p>
+          </article>
+          <article>
+            <h3>Sobrado 4 quartos — Vista Parque</h3>
+            <p>Sobrado moderno com suíte master, varanda e vaga para 3 carros, em condomínio fechado.</p>
+            <p><strong>Preço:</strong> R$ 890.000</p>
+            <p><a href="#contato">Simular visita</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="midia" aria-labelledby="titulo-midia">
+        <h2 id="titulo-midia">Conheça em vídeo e áudio</h2>
+        <p>Demonstração multimídia (conteúdo externo de exemplo; requer conexão com a internet).</p>
+
+        <div class="media-block">
+          <h3>Tour virtual do bairro (vídeo)</h3>
+          <video controls preload="metadata" poster="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.jpg" width="640" height="360">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+            <p>Seu navegador não suporta vídeo HTML5. <a href="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">Baixar o arquivo MP4</a>.</p>
+          </video>
+        </div>
+
+        <div class="media-block">
+          <h3>Podcast: dicas para financiamento (áudio)</h3>
+          <audio controls preload="metadata">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" type="audio/mpeg">
+            <p>Seu navegador não suporta áudio embutido.</p>
+          </audio>
+        </div>
+
+        <figure>
+          <picture>
+            <source type="image/svg+xml" srcset="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect fill='%231a2332' width='100%25' height='100%25'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%235eb8ff' font-family='system-ui' font-size='28'%3EFachada residencial%3C/text%3E%3C/svg%3E">
+            <img src="https://picsum.photos/800/450" alt="Ilustração de fachada residencial em bairro arborizado, referência visual para imóveis da Imobiliária Horizonte" width="800" height="450" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Referência visual: exemplo de imóvel em região residencial (imagem externa ilustrativa).</figcaption>
+        </figure>
+      </section>
+
+      <section id="sobre" aria-labelledby="titulo-sobre">
+        <h2 id="titulo-sobre">Por que comprar com a Imobiliária Horizonte?</h2>
+        <ul>
+          <li>Equipe especializada para te acompanhar em todo o processo.</li>
+          <li>Parcerias com os principais bancos para financiamento.</li>
+          <li>Imóveis selecionados e documentações em dia.</li>
+          <li>Atendimento personalizado online e presencial.</li>
+        </ul>
+      </section>
+
+      <section id="contato" aria-labelledby="titulo-contato">
+        <h2 id="titulo-contato">Formulário avançado de interesse</h2>
+        <p>Preencha os campos. Envio apenas ilustrativo (sem backend); a validação é feita no navegador com atributos HTML5.</p>
+
+        <form id="form-interesse" method="get" action="#contato">
+          <fieldset>
+            <legend>Dados pessoais</legend>
+            <div class="field">
+              <label for="nome-completo">Nome completo <span aria-hidden="true">*</span></label>
+              <input id="nome-completo" name="nome" type="text" autocomplete="name" required minlength="3" maxlength="120" placeholder="Ex.: Maria Silva">
+            </div>
+            <div class="field">
+              <label for="email-contato">E-mail <span aria-hidden="true">*</span></label>
+              <input id="email-contato" name="email" type="email" autocomplete="email" required inputmode="email" placeholder="nome@exemplo.com">
+            </div>
+            <div class="field">
+              <label for="telefone">Telefone / WhatsApp <span aria-hidden="true">*</span></label>
+              <input id="telefone" name="telefone" type="tel" autocomplete="tel" required pattern="^(\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}|\d{10,11})$" placeholder="(11) 90000-1234 ou 11900001234" inputmode="tel">
+              <span class="hint" id="hint-tel">Use DDD + 8 ou 9 dígitos, com ou sem espaços e hífen (ex.: 11900001234).</span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Preferências do imóvel</legend>
+            <div class="field">
+              <label for="tipo-imovel">Tipo de imóvel <span aria-hidden="true">*</span></label>
+              <select id="tipo-imovel" name="tipo" required>
+                <option value="">Selecione…</option>
+                <option value="apartamento">Apartamento</option>
+                <option value="casa">Casa</option>
+                <option value="sobrado">Sobrado</option>
+                <option value="terreno">Terreno</option>
+                <option value="comercial">Comercial</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cidade">Cidade de interesse (com sugestões)</label>
+              <input id="cidade" name="cidade" type="text" list="lista-cidades" autocomplete="address-level2" placeholder="Digite ou escolha">
+              <datalist id="lista-cidades">
+                <option value="Centro"></option>
+                <option value="Jardim Europa"></option>
+                <option value="Vista Parque"></option>
+                <option value="Bairro Novo"></option>
+                <option value="Zona Norte"></option>
+              </datalist>
+            </div>
+            <div class="field">
+              <label for="quartos">Número mínimo de quartos</label>
+              <input id="quartos" name="quartos" type="number" min="0" max="10" step="1" value="2" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="orcamento">Faixa de orçamento aproximada (R$)</label>
+              <input id="orcamento" name="orcamento" type="range" min="200000" max="1200000" step="50000" value="400000" aria-describedby="orcamento-out hint-orcamento">
+              <span id="orcamento-out" class="output-budget" aria-live="polite">R$ 400.000</span>
+              <span class="hint" id="hint-orcamento">Arraste para indicar um valor aproximado; refinamos na visita.</span>
+            </div>
+            <div class="field">
+              <label for="data-visita">Melhor data para visita <span aria-hidden="true">*</span></label>
+              <input id="data-visita" name="data_visita" type="date" required>
+            </div>
+            <div class="field">
+              <label for="url-anuncio">Link de anúncio (opcional)</label>
+              <input id="url-anuncio" name="url_anuncio" type="url" inputmode="url" placeholder="https://">
+            </div>
+          </fieldset>
+
+          <fieldset class="field-inline">
+            <legend>Como prefere o retorno? <span aria-hidden="true">*</span></legend>
+            <div class="radios">
+              <label><input type="radio" name="contato_pref" value="telefone" required> Telefone</label>
+              <label><input type="radio" name="contato_pref" value="whatsapp"> WhatsApp</label>
+              <label><input type="radio" name="contato_pref" value="email"> E-mail</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field-inline">
+            <legend>Serviços de interesse</legend>
+            <div class="checks">
+              <label><input type="checkbox" name="servicos" value="financiamento"> Simulação de financiamento</label>
+              <label><input type="checkbox" name="servicos" value="vistoria"> Agendar vistoria</label>
+              <label><input type="checkbox" name="servicos" value="documentacao"> Orientação documental</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="documento">Anexar documento (PDF ou imagem, opcional)</label>
+            <input id="documento" name="documento" type="file" accept=".pdf,image/*">
+            <span class="hint">Máximo sugerido pelo navegador; não há envio real ao servidor.</span>
+          </div>
+
+          <div class="field">
+            <label for="mensagem">Mensagem <span aria-hidden="true">*</span></label>
+            <textarea id="mensagem" name="mensagem" required minlength="10" maxlength="2000" rows="5" placeholder="Descreva o que você procura (mínimo 10 caracteres)." aria-describedby="hint-msg"></textarea>
+            <span class="hint" id="hint-msg">Inclua bairro preferido, prazo e outras necessidades.</span>
+          </div>
+
+          <div class="field checks">
+            <label>
+              <input id="lgpd" name="lgpd" type="checkbox" required value="sim">
+              Li e aceito o uso dos meus dados apenas para contato sobre este interesse (exemplo didático).
+            </label>
+          </div>
+
+          <button type="submit">Enviar interesse</button>
+        </form>
+      </section>
+    </main>
+
+    <aside aria-labelledby="titulo-aside">
+      <h2 id="titulo-aside" class="sr-only">Atendimento e horários</h2>
+      <h3>Fale com um corretor</h3>
+      <p><strong>Telefone:</strong> <a href="tel:+551140001234">(11) 4000-1234</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5511900001234">(11) 90000-1234</a></p>
+      <h3>Horários</h3>
+      <ul>
+        <li>Segunda a sexta: 08h às 18h</li>
+        <li>Sábado: 09h às 14h</li>
+        <li>Domingos e feriados: plantão online</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Imobiliária Horizonte. CNPJ 00.000.000/0001-00. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var range = document.getElementById("orcamento");
+      var out = document.getElementById("orcamento-out");
+      if (range && out) {
+        function fmt(n) {
+          return "R$ " + Number(n).toLocaleString("pt-BR");
+        }
+        function sync() {
+          out.textContent = fmt(range.value);
+        }
+        range.addEventListener("input", sync);
+        sync();
+      }
+    })();
+  </script>
+</body>
+</html>
