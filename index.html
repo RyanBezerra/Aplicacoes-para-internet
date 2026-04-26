@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubra a Paraíba: praias, cultura, história e experiências únicas no Nordeste brasileiro.">
+  <title>Paraíba Turismo — Descubra o Nordeste</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232563eb'/%3E%3Cpath fill='%23fef3c7' d='M8 20c4-6 12-6 16 0-4 4-12 4-16 0z'/%3E%3C/svg%3E" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
+
+  <header class="site-header" id="topo" tabindex="-1">
+    <div class="container header-inner">
+      <a class="logo" href="#topo" aria-label="Paraíba Turismo — início">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-text">Paraíba Turismo</span>
+      </a>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="site-nav" id="menu-principal" aria-label="Principal">
+        <ul class="nav-list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#cultura">Cultura</a></li>
+          <li><a href="#gastronomia">Gastronomia</a></li>
+          <li><a href="#roteiros">Roteiros</a></li>
+          <li><a href="#contato" class="nav-cta">Planejar viagem</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+    <section class="hero hero--media" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Nordeste brasileiro</p>
+          <h1 id="hero-title">A Paraíba espera por você</h1>
+          <p class="lead">
+            Praias de águas mornas, o sol nascer no mar mais oriental das Américas e uma cultura viva em cada cidade. Explore com calma e descubra o melhor do estado.
+          </p>
+          <div class="hero-actions">
+            <a href="#destinos" class="btn btn-primary">Ver destinos</a>
+            <a href="#roteiros" class="btn btn-secondary">Sugestões de roteiro</a>
+          </div>
+        </div>
+        <div class="hero-panel" role="presentation">
+          <div class="hero-stat">
+            <strong id="stat-praias">100+</strong>
+            <span>Praias catalogadas</span>
+          </div>
+          <div class="hero-stat">
+            <strong id="stat-capital">João Pessoa</strong>
+            <span>Capital — nascer do sol no mar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="destinos" aria-labelledby="destinos-title">
+      <div class="container">
+        <header class="section-head">
+          <h2 id="destinos-title">Destinos em destaque</h2>
+          <p>Do litoral ao sertão, cada região tem identidade própria e hospitalidade marcante.</p>
+        </header>
+
+        <div class="cards-grid" role="list">
+          <article class="card card--media" role="listitem">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80" alt="Orla com coqueiros e mar em dia ensolarado" width="800" height="450" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3>João Pessoa</h3>
+              <p>Orla de Tambaú e Cabo Branco, Farol do Cabo Branco e centros históricos cheios de charme.</p>
+              <a href="#contato" class="card-link">Quero visitar</a>
+            </div>
+          </article>
+          <article class="card card--media" role="listitem">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80" alt="Multidão em evento ao ar livre com iluminação festiva" width="800" height="450" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3>Campina Grande</h3>
+              <p>O maior São João do mundo e uma cena cultural e universitária pulsante o ano todo.</p>
+              <a href="#contato" class="card-link">Quero visitar</a>
+            </div>
+          </article>
+          <article class="card card--media" role="listitem">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Costa com falésias e mar azul visto de cima" width="800" height="450" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3>Praias do litoral sul</h3>
+              <p>Tambaba, Coqueirinho e Barra de Gramame — natureza preservada e visual impressionante.</p>
+              <a href="#contato" class="card-link">Quero visitar</a>
+            </div>
+          </article>
+          <article class="card card--media" role="listitem">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80" alt="Paisagem de caatinga com vegetação seca e horizonte amplo" width="800" height="450" loading="lazy">
+            </div>
+            <div class="card-body">
+              <h3>Sertão paraibano</h3>
+              <p>História de cordel, rio São Francisco e cidades como Patos e Cajazeiras.</p>
+              <a href="#contato" class="card-link">Quero visitar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cultura" aria-labelledby="cultura-title">
+      <div class="container split split--culture">
+        <div class="split-text">
+          <h2 id="cultura-title">Cultura e patrimônio</h2>
+          <p>
+            A Paraíba é berço de artistas, poetas e inventores. O Memorial Ciência e o Centro Cultural São Francisco, em João Pessoa, são paradas obrigatórias para quem quer entender a história regional.
+          </p>
+          <p>
+            Festas populares, forró e artesanato em barro e renda consolidam tradições que atravessam gerações.
+          </p>
+          <ul class="check-list">
+            <li>Centro Histórico de João Pessoa</li>
+            <li>Estação Cabo Branco — Ciência, Cultura e Artes</li>
+            <li>Rota do artesanato e feiras locais</li>
+          </ul>
+        </div>
+        <div class="split-visual">
+          <figure class="culture-figure">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80" alt="Ruas de cidade histórica com edifícios coloridos sob céu azul" width="900" height="600" loading="lazy">
+          </figure>
+          <aside class="split-aside" aria-label="Destaque cultural">
+            <blockquote class="quote-block">
+              <p>“A cultura é o que permanece quando tudo mais é esquecido.”</p>
+              <footer>— Ambiente que inspira cada visita à Paraíba</footer>
+            </blockquote>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-accent" id="gastronomia" aria-labelledby="gastro-title">
+      <div class="container">
+        <header class="section-head section-head-light">
+          <h2 id="gastro-title">Sabores da Paraíba</h2>
+          <p class="gastro-lead">
+            Do litoral ao agreste, a mesa paraibana mistura frutos do mar frescos, raízes indígenas e africanas e o trabalho de quem vive da terra e do mar. É comum encontrar feiras com tapioca na hora, barracas de caldinho à noite e doces de banana que fecham qualquer refeição com carinho.
+          </p>
+        </header>
+
+        <div class="gastro-intro">
+          <p>
+            Na capital e nas praias, prove <strong>tapioca</strong> com manteiga de garrafa ou <strong>queijo coalho</strong> na brasa; nos mercados e restaurantes típicos, pedir <strong>sururu</strong> ou uma <strong>caldeirada</strong> é mergulhar no sabor do litoral. Mais ao interior, entram em cena a <strong>carne de sol</strong>, receitas em panela de barro e doces ligados à festa junina e à feira.
+          </p>
+        </div>
+
+        <div class="gastro-grid" role="list">
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=640&q=80" alt="Pratos variados sobre mesa — referência à culinária regional" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Tapioca e queijo coalho</h3>
+              <p>Massa crocante de goma hidratada recheada na hora — de coco a cartola salgada. O coalho na brasa, levemente salgado, é presença clássica na orla e em feiras.</p>
+            </div>
+          </article>
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=640&q=80" alt="Salada colorida com legumes frescos em tigela" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Moquecas e peixada</h3>
+              <p>Peixes locais cozidos com leite de coco, dendê ou manteiga da terra, acompanhados de pirão e arroz — herança do litoral nordestino em versões que variam de casa para casa.</p>
+            </div>
+          </article>
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=640&q=80" alt="Prato com frutos do mar — camarões e temperos" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Sururu e caldinho</h3>
+              <p>O molusco aparece refogado, em ensopados ou em caldinho para dividir à mesa — petisco forte em praia e barzinho.</p>
+            </div>
+          </article>
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=640&q=80" alt="Carne assada na grelha com temperos" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Carne de sol</h3>
+              <p>Salgada na medida, desfiada ou em posta, costuma vir com macaxeira, farofa e um toque de manteiga — prato marcante do interior e do agreste.</p>
+            </div>
+          </article>
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1563805042-7684c019e650?w=640&q=80" alt="Sobremesa com banana e cobertura escura em prato branco" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Cartola e doces de banana</h3>
+              <p>Banana grelhada com queijo e canela (a cartola) e outros doces caseiros encerram almoços e festas com doçura típica do Nordeste.</p>
+            </div>
+          </article>
+          <article class="gastro-card" role="listitem">
+            <div class="gastro-card-media">
+              <img src="https://images.unsplash.com/photo-1514362548677-3f69c27e5036?w=640&q=80" alt="Taças com drinks e gelo — ambiente de bar" width="640" height="400" loading="lazy">
+            </div>
+            <div class="gastro-card-body">
+              <h3>Cachaça artesanal</h3>
+              <p>Engenhos pequenos e rotas culturais valorizam aguardentes regionais — sempre com moderação e, quando possível, visitas guiadas e degustações responsáveis.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="gastro-tags-label" id="gastro-tags-label">Também vale experimentar:</p>
+        <div class="tags-grid" id="tagsGastro" role="list" aria-labelledby="gastro-tags-label"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="roteiros" aria-labelledby="roteiros-title">
+      <div class="container">
+        <header class="section-head">
+          <h2 id="roteiros-title">Roteiros sugeridos</h2>
+          <p>Escolha um perfil e use como ponto de partida — ajuste ao seu tempo e ritmo.</p>
+        </header>
+        <div class="tabs" data-tabs>
+          <div class="tabs-list" role="tablist" aria-label="Tipos de roteiro">
+            <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="panel-3d" id="tab-3d" tabindex="0">3 dias</button>
+            <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-5d" id="tab-5d" tabindex="-1">5 dias</button>
+            <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-7d" id="tab-7d" tabindex="-1">7 dias</button>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel is-active" role="tabpanel" id="panel-3d" aria-labelledby="tab-3d">
+              <ol class="roteiro-list">
+                <li><strong>Dia 1:</strong> Orla de Tambaú, pôr do sol na praia e jantar com música ao vivo.</li>
+                <li><strong>Dia 2:</strong> Centro histórico, Farol e Estação Cabo Branco.</li>
+                <li><strong>Dia 3:</strong> Dia de praia ao sul (Jacumã ou Coqueirinho) com retorno tranquilo.</li>
+              </ol>
+            </div>
+            <div class="tab-panel" role="tabpanel" id="panel-5d" hidden aria-labelledby="tab-5d">
+              <ol class="roteiro-list">
+                <li><strong>Dias 1–2:</strong> João Pessoa completa — praias urbanas e cultura.</li>
+                <li><strong>Dia 3:</strong> Excursão ao litoral sul ou norte conforme temporada.</li>
+                <li><strong>Dia 4:</strong> Campina Grande — museus, gastronomia e vida noturna.</li>
+                <li><strong>Dia 5:</strong> Compras de artesanato e despedida na orla.</li>
+              </ol>
+            </div>
+            <div class="tab-panel" role="tabpanel" id="panel-7d" hidden aria-labelledby="tab-7d">
+              <ol class="roteiro-list">
+                <li><strong>Dias 1–3:</strong> Capital e arredores com visitas culturais espaçadas.</li>
+                <li><strong>Dias 4–5:</strong> Interior ou litoral mais distante com pernoite.</li>
+                <li><strong>Dias 6–7:</strong> Retorno à capital, relax na praia e últimas experiências gastronômicas.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contato" aria-labelledby="contato-title">
+      <div class="container narrow">
+        <header class="section-head">
+          <h2 id="contato-title">Planeje sua viagem</h2>
+          <p>Deixe seu e-mail e interesses — em um site real, isso conectaria a um formulário ou newsletter.</p>
+        </header>
+        <form class="contact-form" id="formContato" novalidate>
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required placeholder="Seu nome completo" aria-describedby="hint-nome">
+            <span class="field-hint" id="hint-nome">Como prefere ser chamado(a) na resposta.</span>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder="seu@email.com" aria-describedby="hint-email">
+            <span class="field-hint" id="hint-email">Usaremos apenas para retorno sobre o interesse neste projeto demonstrativo.</span>
+          </div>
+          <div class="field">
+            <label for="interesse">Principal interesse</label>
+            <select id="interesse" name="interesse" required aria-describedby="hint-interesse">
+              <option value="">Selecione uma opção</option>
+              <option value="praias">Praias</option>
+              <option value="cultura">Cultura e história</option>
+              <option value="gastronomia">Gastronomia</option>
+              <option value="sertao">Sertão / interior</option>
+            </select>
+            <span class="field-hint" id="hint-interesse">Ajuda a priorizar sugestões de roteiro.</span>
+          </div>
+          <div class="field">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Datas, número de pessoas, dúvidas…" aria-describedby="hint-msg"></textarea>
+            <span class="field-hint" id="hint-msg">Período da viagem e preferências deixam o planejamento mais próximo da realidade.</span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar interesse</button>
+          <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand">Paraíba Turismo</p>
+        <p class="footer-note">Projeto demonstrativo — conteúdo inspirado no turismo oficial da Paraíba.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <ul class="footer-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#destinos">Destinos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="btn-back-top" id="btnTopo" aria-label="Voltar ao topo">↑ Topo</button>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="anoAtual"></span> — Feito com HTML, CSS e JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
