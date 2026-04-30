@@ -1,4 +1,4 @@
-### Aplicações para Internet — Aula 7
+### Aplicações para Internet — Aula 8
 ### Layout Moderno e Responsividade
 
 - ### Brief do projeto (requisitos)
