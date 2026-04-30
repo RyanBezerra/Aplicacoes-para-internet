@@ -1,0 +1,113 @@
+.hero {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.hero--media {
+  position: relative;
+  isolation: isolate;
+  min-height: min(72vh, 560px);
+  display: flex;
+  align-items: center;
+  background-color: var(--color-primary);
+  background-image: var(--gradient-hero), var(--hero-image);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 60% at 70% 20%,
+    rgba(199, 62, 43, 0.15),
+    transparent 55%
+  );
+}
+
+.hero--media .hero-grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero--media {
+    min-height: auto;
+    padding-block: clamp(3rem, 10vw, 5rem);
+  }
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+  margin: 0 0 0.75rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.2);
+}
+
+.lead {
+  font-size: 1.125rem;
+  opacity: 0.95;
+  max-width: 40ch;
+  margin: 0 0 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-panel {
+  background: rgba(248, 246, 242, 0.97);
+  color: var(--color-ink);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  min-width: min(280px, 100%);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+}
+
+.hero-stat + .hero-stat {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.hero-stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.hero-stat span {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}

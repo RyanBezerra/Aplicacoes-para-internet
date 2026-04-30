@@ -1,0 +1,47 @@
+:root {
+  /* Breakpoints como referência (não funcionam dentro de @media) */
+  /* --bp-sm: 480px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px; */
+
+  /* Paleta e identidade */
+  --color-bg: #f4f1eb;
+  --color-surface: #ffffff;
+  --color-text: #1c1c1e;
+  --color-muted: #5c5c63;
+  --color-primary: #0d4f6c;
+  --color-primary-hover: #0a3d54;
+  --color-accent: #c73e2b;
+  --color-accent-hover: #a83222;
+  --color-ink: #0a1628;
+  --color-border: #d8d4cc;
+  --color-hero-side: #e8e4dc;
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.06);
+  --shadow-md: 0 8px 24px rgba(10, 22, 40, 0.1);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-input: 12px;
+  --header-h: 72px;
+
+  --gradient-hero: linear-gradient(
+    125deg,
+    rgba(13, 79, 108, 0.93) 0%,
+    rgba(10, 22, 40, 0.88) 45%,
+    rgba(13, 79, 108, 0.82) 100%
+  );
+  --hero-image: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&q=80");
+
+  /* Tokens de espaçamento */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Tipografia fluida */
+  --fs-base: clamp(0.875rem, 2vw, 1rem);
+  --fs-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --fs-h2: clamp(1.25rem, 3vw, 1.875rem);
+}
