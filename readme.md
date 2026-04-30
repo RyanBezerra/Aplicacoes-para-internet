@@ -199,6 +199,8 @@ input, select, textarea {
 #### 7.5 Entregável
 Entregar o **link do repositório GitHub** com o commit contendo as mudanças e **3 screenshots** do layout nos breakpoints **mobile**, **tablet** e **desktop** (capturados no Chrome DevTools).
 
+<img width="675" height="1600" alt="image" src="https://github.com/user-attachments/assets/32dc6066-e439-4752-a170-1305de1c6898" />
+
 ### Evidências (screenshots)
 #### Mobile (< 480px)
 ![Layout mobile](imgs/mobile.png)
