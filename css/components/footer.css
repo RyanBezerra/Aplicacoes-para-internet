@@ -1,0 +1,75 @@
+.site-footer {
+  background: var(--color-ink);
+  color: rgba(255, 255, 255, 0.88);
+  padding: 2.5rem 0 0;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 0 0 0.35rem;
+  color: #fff;
+}
+
+.footer-note {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.75;
+  max-width: 28ch;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.btn-back-top {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-back-top:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom {
+  padding: 1rem 0 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+
+.footer-bottom p {
+  margin: 0;
+}

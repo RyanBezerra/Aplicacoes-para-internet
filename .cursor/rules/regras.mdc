@@ -1,0 +1,161 @@
+---
+alwaysApply: true
+---
+# Aula 7 — Layout Moderno e Responsividade (HTML/CSS)
+
+## Objetivo
+
+Ao editar `index.html` e `styles.css`, manter o projeto **responsivo** com 3 breakpoints:
+
+- **mobile**: \< 480px (base mobile-first)
+- **tablet**: >= 768px
+- **desktop**: >= 1024px
+
+Use **Flexbox e/ou Grid**, **media queries** e **unidades relativas**.
+
+## Regras obrigatórias (sempre aplicar)
+
+- **Viewport**: confirme que existe no `<head>`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+- **Mobile-first**: CSS base deve funcionar bem em ~375px antes de adicionar `@media (min-width: ...)`.
+- **Evitar largura fixa**: não usar `width: 960px/1200px` em containers; preferir `max-width` + `margin-inline: auto`.
+- **Unidades**: preferir `rem`, `%`, `vw`, `clamp()` (evitar `px` para tipografia e espaçamentos quando possível).
+- **Sem overflow horizontal**: nunca pode existir scroll horizontal em 375px.
+
+## Setup padrão (no `styles.css`, acrescente apenas o que estiver faltando)
+
+```css
+:root {
+  /* Breakpoints como referência (não funcionam dentro de @media) */
+  /* --bp-sm: 480px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px; */
+
+  /* Tokens de espaçamento */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Tipografia fluida */
+  --fs-base: clamp(0.875rem, 2vw, 1rem);
+  --fs-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --fs-h2: clamp(1.25rem, 3vw, 1.875rem);
+}
+
+body {
+  font-size: var(--fs-base);
+  line-height: 1.6;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+
+/* Reset de mídias responsivas */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Inputs responsivos */
+input, select, textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+```
+
+## Layout base (mobile \< 480px)
+
+Se o layout estiver “travado” em desktop, reestruture para coluna única primeiro.
+
+```css
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+```
+
+## Breakpoints obrigatórios
+
+### Tablet (>= 768px)
+
+```css
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  main {
+    grid-template-columns: 240px 1fr;
+    grid-template-areas:
+      "sidebar main"
+      "sidebar main";
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .sidebar { grid-area: sidebar; }
+  .content { grid-area: main; }
+}
+```
+
+### Desktop (>= 1024px)
+
+```css
+@media (min-width: 1024px) {
+  main {
+    grid-template-columns: 280px 1fr 220px;
+    grid-template-areas: "sidebar main aside";
+  }
+
+  .aside { grid-area: aside; }
+}
+```
+
+## Checklist de verificação (antes de finalizar qualquer mudança)
+
+- **375px**: coluna única, sem overflow horizontal, tudo legível.
+- **768px**: header em linha, sidebar aparece e o conteúdo se reorganiza.
+- **1024px**: 3 colunas (se houver `.aside`), sem “quebras” de espaçamento.
+- **Imagens**: nunca estouram container.
+- **Formulários**: inputs 100% no mobile.
+- **Landscape**: testar 667×375 (ou similar) e garantir que o conteúdo não “some”.
+
+## Se o agente detectar problemas comuns, corrigir assim
+
+- **Overflow horizontal**: procurar elementos com `width`/`min-width` rígidos e trocar por `max-width: 100%`, `overflow-wrap`, `flex-wrap`, ou `grid` responsivo.
+- **Texto pequeno/grande demais**: usar `clamp()` nas escalas e revisar `line-height`.
+- **Cards desalinhados**: preferir `.cards-grid` com `auto-fit/minmax()` em vez de várias media queries.

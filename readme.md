@@ -1,6 +1,12 @@
 ### Aplicações para Internet — Aula 7
 ### Layout Moderno e Responsividade
 
+- ### Brief do projeto (requisitos)
+- **1) Contexto (2–3 frases)**: Projeto de **landing page** em **HTML/CSS** para praticar **layout responsivo**. O foco é reorganizar o conteúdo com **Flexbox/Grid** e **media queries** em três breakpoints.
+- **2) Público-alvo**: Pessoas **16–35 anos**, acessando em contexto de uso rápido no dia a dia. **Dispositivo principal**: **smartphone**.
+- **3) Dor principal**: O usuário não consegue **ler e navegar bem em diferentes telas** quando o layout não é responsivo (quebras/overflow/zoom).
+- **4) Critério de sucesso**: **O usuário consegue** usar o site em **375px, 768px e 1024px** sem scroll horizontal, com texto/imagens legíveis e navegação clara.
+
 - **Stack**: HTML5 / CSS3  
 - **Carga horária**: 2 horas  
 - **Professor**: Jeofton Costa  
@@ -202,3 +208,32 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 
 #### Desktop (>= 1024px)
 ![Layout desktop](imgs/laptop.png)
+
+### Checklist de entrega (auditoria)
+
+- **README.md (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
+- **Estrutura de pastas (ITCSS)**: OK — camadas criadas em `css/settings/`, `css/generic/`, `css/elements/`, `css/objects/`, `css/components/`, `css/utilities/`.
+- **`variables.css` (cores + tipografia)**: OK — `css/settings/variables.css` com **paleta (>= 5 cores)** e **escala tipográfica completa** (tokens `--fs-200`…`--fs-900`).
+- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/generic/reset.css`.
+- **`index.html` (imports na ordem + HTML semântico)**: OK — imports na ordem ITCSS e uso de `header`, `nav`, `main`, `section`, `article`, `footer`.
+- **Contraste WCAG AA (texto/fundo)**: OK — verificação feita com script local (`scripts/contrast-check.js`).
+
+#### Contraste (WCAG 2.1 — AA)
+
+Combinações principais (texto/fundo) e resultado:
+
+- **Texto padrão** `#1c1c1e` em **fundo** `#f4f1eb`: **15.09:1** (AA normal)
+- **Texto** `#1c1c1e` em **surface** `#ffffff`: **17.01:1** (AA normal)
+- **Muted** `#5c5c63` em **fundo** `#f4f1eb`: **5.88:1** (AA normal)
+- **Ink** `#0a1628` em **surface** `#ffffff`: **18.13:1** (AA normal)
+- **CTA (texto)** `#ffffff` em **accent** `#c73e2b`: **5.06:1** (AA normal)
+- **CTA hover (texto)** `#ffffff` em **accent-hover** `#a83222`: **6.68:1** (AA normal)
+- **Nav CTA (texto)** `#ffffff` em **primary** `#0d4f6c`: **8.93:1** (AA normal)
+- **Nav CTA hover (texto)** `#ffffff` em **primary-hover** `#0a3d54`: **11.61:1** (AA normal)
+- **Texto branco** `#ffffff` em **ink** `#0a1628`: **18.13:1** (AA normal)
+
+Para reproduzir:
+
+```bash
+node scripts/contrast-check.js
+```
