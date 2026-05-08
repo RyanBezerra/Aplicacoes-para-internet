@@ -1,18 +1,22 @@
 body {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--fs-base);
-  line-height: 1.6;
+  font-family: var(--font-family-sans);
+  font-size: var(--fs-300);
+  line-height: var(--lh-base);
   color: var(--color-text);
   background-color: var(--color-bg);
 }
 
 h1 {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-700);
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-700);
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
 }
 
 /* Inputs responsivos */
@@ -21,21 +25,4 @@ select,
 textarea {
   width: 100%;
   box-sizing: border-box;
-}
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 100;
-  padding: 0.75rem 1rem;
-  background: var(--color-primary);
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  left: 0.5rem;
-  top: 0.5rem;
 }

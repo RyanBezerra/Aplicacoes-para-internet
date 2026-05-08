@@ -1,5 +1,11 @@
-### Aplicações para Internet — Aula 8
-### Layout Moderno e Responsividade
+### Aplicações para Internet — Aula 09
+### Layout Moderno, Responsividade e Acessibilidade (contraste)
+
+### Modificações desta aula (Aula 09)
+- **Estrutura de pastas (ITCSS)**: consolidação das camadas em `css/` e `css/components/`.
+- **Design tokens**: centralização de cores e tipografia em `css/variables.css` (inclui `--color-primary-500`).
+- **Reset moderno**: aplicação de reset em `css/reset.css`.
+- **Acessibilidade (WCAG AA)**: validação de contraste com script local `scripts/contrast-check.js`.
 
 - ### Brief do projeto (requisitos)
 - **1) Contexto (2–3 frases)**: Projeto de **landing page** em **HTML/CSS** para praticar **layout responsivo**. O foco é reorganizar o conteúdo com **Flexbox/Grid** e **media queries** em três breakpoints.
@@ -214,9 +220,9 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 ### Checklist de entrega (auditoria)
 
 - **README.md (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
-- **Estrutura de pastas (ITCSS)**: OK — camadas criadas em `css/settings/`, `css/generic/`, `css/elements/`, `css/objects/`, `css/components/`, `css/utilities/`.
-- **`variables.css` (cores + tipografia)**: OK — `css/settings/variables.css` com **paleta (>= 5 cores)** e **escala tipográfica completa** (tokens `--fs-200`…`--fs-900`).
-- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/generic/reset.css`.
+- **Estrutura de pastas (ITCSS)**: OK — camadas consolidadas em `css/` e `css/components/` (sem duplicidade).
+- **`variables.css` (cores + tipografia)**: OK — tokens centralizados em `css/variables.css` (inclui `--color-primary-500` do checkpoint da Aula 09).
+- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/reset.css`.
 - **`index.html` (imports na ordem + HTML semântico)**: OK — imports na ordem ITCSS e uso de `header`, `nav`, `main`, `section`, `article`, `footer`.
 - **Contraste WCAG AA (texto/fundo)**: OK — verificação feita com script local (`scripts/contrast-check.js`).
 

@@ -1,47 +1,61 @@
 :root {
-  /* Breakpoints como referência (não funcionam dentro de @media) */
-  /* --bp-sm: 480px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px; */
+  /* Cores base */
+  --color-white: #ffffff;
+  --color-black: #000000;
 
-  /* Paleta e identidade */
-  --color-bg: #f4f1eb;
-  --color-surface: #ffffff;
-  --color-text: #1c1c1e;
-  --color-muted: #5c5c63;
-  --color-primary: #0d4f6c;
-  --color-primary-hover: #0a3d54;
-  --color-accent: #c73e2b;
-  --color-accent-hover: #a83222;
-  --color-ink: #0a1628;
-  --color-border: #d8d4cc;
-  --color-hero-side: #e8e4dc;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+  --color-gray-900: #111827;
 
-  --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-display: "Fraunces", Georgia, serif;
+  /* Checkpoint do material (obrigatório) */
+  --color-primary-500: #2E75B6;
+  --color-primary-600: #25629a;
 
-  --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.06);
-  --shadow-md: 0 8px 24px rgba(10, 22, 40, 0.1);
-  --radius: 10px;
-  --radius-lg: 14px;
-  --radius-input: 12px;
-  --header-h: 72px;
+  /* Tema do site (mapeamento) */
+  --color-bg: var(--color-gray-50);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-gray-900);
+  --color-muted: var(--color-gray-500);
+  --color-border: var(--color-gray-200);
+  --color-footer-bg: var(--color-gray-900); /* #111827 */
 
-  --gradient-hero: linear-gradient(
-    125deg,
-    rgba(13, 79, 108, 0.93) 0%,
-    rgba(10, 22, 40, 0.88) 45%,
-    rgba(13, 79, 108, 0.82) 100%
-  );
-  --hero-image: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&q=80");
+  /* Tipografia (setup da Aula 09) */
+  --font-family-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+  --font-family-display: "Poppins", "Inter", system-ui, sans-serif;
 
-  /* Tokens de espaçamento */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
+  /* Escala tipográfica */
+  --fs-200: 0.875rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+  --fs-700: 1.75rem;
 
-  /* Tipografia fluida */
-  --fs-base: clamp(0.875rem, 2vw, 1rem);
-  --fs-h1: clamp(1.75rem, 4vw, 2.5rem);
-  --fs-h2: clamp(1.25rem, 3vw, 1.875rem);
+  --lh-base: 1.6;
+
+  /* Espaçamento */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Aliases (compatibilidade com variações usadas nos componentes) */
+  --space-sm: var(--space-3);
+  --space-md: var(--space-6);
+
+  /* Bordas e sombras */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  --shadow-sm: 0 2px 10px rgba(17, 24, 39, 0.08);
+  --shadow-md: 0 10px 30px rgba(17, 24, 39, 0.12);
 }
