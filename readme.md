@@ -221,6 +221,12 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 #### Desktop (>= 1024px)
 ![Layout desktop](imgs/laptop.png)
 
+ mobile (375px) e desktop (1200px)
+
+ <img width="750" height="16384" alt="_C__Users_multi_OneDrive_%C3%81rea%20de%20Trabalho_Aplicacoes-para-internet-alpha_index html" src="https://github.com/user-attachments/assets/84dc8fea-80ca-43f2-b2cb-51aa8c0add76" />
+
+ <img width="750" height="16384" alt="_C__Users_multi_OneDrive_%C3%81rea%20de%20Trabalho_Aplicacoes-para-internet-alpha_index html" src="https://github.com/user-attachments/assets/d1772b3e-2424-4950-9f1d-bc7e969882f4" />
+
 ### Checklist de entrega (auditoria)
 
 - **README.md (Aula 09)**: OK — identifica a **aula atual**, resume **alterações** (JS, ARIA, formulário, scroll no header) e mantém o **brief** e o roteiro da Aula 08 como referência.
