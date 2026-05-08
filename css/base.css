@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--fs-300);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1 {
+  font-size: var(--fs-700);
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--fs-700);
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
+}
+
+/* Inputs responsivos */
+input,
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}

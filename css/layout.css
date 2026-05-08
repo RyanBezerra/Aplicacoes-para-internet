@@ -1,0 +1,36 @@
+.container {
+  width: min(1120px, 92vw);
+  margin-inline: auto;
+}
+
+.section {
+  padding: var(--space-12) 0;
+}
+
+.section__title {
+  margin: 0 0 var(--space-8);
+  text-align: center;
+}
+
+/* Grids */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card--featured {
+    grid-column: span 2;
+  }
+}
