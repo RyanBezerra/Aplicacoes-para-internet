@@ -70,4 +70,3 @@ for (const r of rows) {
   const status = r.okNormal ? "AA (normal)" : r.okLarge ? "AA (texto grande)" : "Falha";
   console.log(`- ${r.name}: ${r.fg} / ${r.bg} -> ${fmt(r.ratio)} (${status})`);
 }
-

@@ -1,132 +1,39 @@
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  transition: box-shadow 0.2s ease, padding 0.2s ease;
+/* Navbar — extensões da Aula 09 (Desafio Extra)
+   - Estado .header--scrolled aplicado via JS ao rolar > 80px
+   - Reduz o padding e aumenta a sombra para dar sensação de "fixar"
+   - Mantém compatibilidade com o .site-header já existente em nav.css
+*/
+
+.site-header {
+  transition: box-shadow 0.25s ease, padding 0.25s ease,
+    background-color 0.25s ease;
 }
 
-.header--scrolled {
-  box-shadow: var(--shadow-md);
+.site-header.header--scrolled {
+  box-shadow: 0 6px 18px rgba(10, 22, 40, 0.12);
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
+.site-header.header--scrolled .header-inner {
+  padding-block: 0.5rem;
 }
 
-.header--scrolled .navbar {
-  padding: var(--space-sm) 0;
+.site-header.header--scrolled .logo {
+  font-size: 1rem;
 }
 
-.navbar__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 700;
-  font-family: var(--font-family-display);
+.site-header.header--scrolled .logo-mark {
+  width: 30px;
+  height: 30px;
 }
 
-.navbar__toggle {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  cursor: pointer;
-}
-
-.navbar__toggle-bar {
-  display: block;
-  width: 20px;
-  height: 2px;
-  margin: 0 auto;
-  background: var(--color-text);
-}
-
-.navbar__toggle-bar + .navbar__toggle-bar {
-  margin-top: 6px;
-}
-
-.navbar__menu {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.navbar__list {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar__link {
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-}
-
-.navbar__link:hover,
-.navbar__link:focus-visible {
-  border-bottom-color: var(--color-primary-500);
-  color: var(--color-primary-500);
-}
-
-@media (max-width: 768px) {
-  .navbar__toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar__menu {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-sm);
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-md);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .navbar__menu.is-open {
-    display: flex;
-  }
-
-  .navbar__list {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .navbar__item {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .navbar__item:last-child {
-    border-bottom: 0;
-  }
-
-  .navbar__link {
-    display: block;
-    padding: 0.75rem 0;
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header.header--scrolled .header-inner,
+  .site-header.header--scrolled .logo,
+  .site-header.header--scrolled .logo-mark {
+    transition: none;
   }
 }

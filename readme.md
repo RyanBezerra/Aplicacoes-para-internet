@@ -1,11 +1,7 @@
 ### Aplicações para Internet — Aula 09
-### Layout Moderno, Responsividade e Acessibilidade (contraste)
+### JavaScript na página — interatividade e comportamentos
 
-### Modificações desta aula (Aula 09)
-- **Estrutura de pastas (ITCSS)**: consolidação das camadas em `css/` e `css/components/`.
-- **Design tokens**: centralização de cores e tipografia em `css/variables.css` (inclui `--color-primary-500`).
-- **Reset moderno**: aplicação de reset em `css/reset.css`.
-- **Acessibilidade (WCAG AA)**: validação de contraste com script local `scripts/contrast-check.js`.
+Esta entrega evolui o projeto da **Aula 08** (layout responsivo com Flexbox, Grid e media queries), acrescentando **JavaScript em arquivo externo** (`js/main.js`), **padrões de acessibilidade** (teclado e ARIA) e **feedback visual** ao rolar a página.
 
 - ### Brief do projeto (requisitos)
 - **1) Contexto (2–3 frases)**: Projeto de **landing page** em **HTML/CSS** para praticar **layout responsivo**. O foco é reorganizar o conteúdo com **Flexbox/Grid** e **media queries** em três breakpoints.
@@ -18,11 +14,19 @@
 - **Professor**: Jeofton Costa  
 
 ### Conteúdo desta aula
-- **Flexbox**: distribuição e alinhamento unidimensional
-- **CSS Grid**: layout bidimensional e `grid-template-areas`
-- **Media Queries**: breakpoints e estratégia mobile-first
-- **Unidades de medida CSS**: absolutas e relativas
-- **Prática**: tornar o layout do projeto responsivo
+- **JavaScript no front-end**: arquivo externo, escopo com IIFE e boas práticas (`strict`)
+- **DOM e eventos**: `addEventListener`, manipulação de classes e atributos ARIA
+- **Acessibilidade em componentes**: menu expansível, abas (`role="tablist"` / teclado), formulário com `aria-live`
+- **Performance em scroll**: `requestAnimationFrame`, listener `passive` e estado visual no cabeçalho
+- **Validação de formulário**: campos obrigatórios e formato de e-mail no cliente (demonstração, sem envio ao servidor)
+
+### Alterações realizadas nesta versão (Aula 09)
+
+- **`index.html`**: inclusão de `<script src="js/main.js" defer></script>`; **skip link** “Ir para o conteúdo”; **cabeçalho** com botão **menu hambúrguer** (`#navToggle`) e navegação associada (`aria-expanded`, `aria-controls`); **abas de roteiros** (`data-tabs`, `role="tab"` / `tabpanel`); **formulário de contato** com `novalidate`, hints e região de feedback (`#formFeedback`, `role="status"`); **rodapé** com ano dinâmico (`#anoAtual`) e botão **voltar ao topo** (`#btnTopo`).
+- **`js/main.js`**: menu mobile (abrir/fechar, fechar ao seguir âncora em telas ≤860px, **Escape**); **abas** com suporte a **setas**, **Home** e **End**; **lista de sabores** da gastronomia injetada na grade de tags; **validação** do formulário e mensagens de sucesso/erro; **scroll suave** para o topo com devolução de foco ao `#topo`; **desafio extra da aula**: ao rolar mais de **80px**, aplica a classe **`header--scrolled`** no `.site-header` usando **`requestAnimationFrame`** para não sobrecarregar o scroll.
+- **`css/components/navbar.css`** (e demais estilos já existentes): estilos para o **estado com rolagem** (`.site-header.header--scrolled`), com transição visual do cabeçalho compacto sobre o fundo da página.
+
+> **Nota:** O roteiro passo a passo da seção **“Etapa prática — Roteiro”** abaixo corresponde ao trabalho de **responsividade da Aula 08** e permanece como referência do que já foi aplicado na base do layout.
 
 ### Etapa prática — Roteiro
 ### Tornando o projeto da dupla responsivo
@@ -217,13 +221,21 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 #### Desktop (>= 1024px)
 ![Layout desktop](imgs/laptop.png)
 
+ mobile (375px) e desktop (1200px)
+
+ <img width="750" height="16384" alt="_C__Users_multi_OneDrive_%C3%81rea%20de%20Trabalho_Aplicacoes-para-internet-alpha_index html" src="https://github.com/user-attachments/assets/84dc8fea-80ca-43f2-b2cb-51aa8c0add76" />
+
+ <img width="750" height="16384" alt="_C__Users_multi_OneDrive_%C3%81rea%20de%20Trabalho_Aplicacoes-para-internet-alpha_index html" src="https://github.com/user-attachments/assets/d1772b3e-2424-4950-9f1d-bc7e969882f4" />
+
 ### Checklist de entrega (auditoria)
 
+- **README.md (Aula 09)**: OK — identifica a **aula atual**, resume **alterações** (JS, ARIA, formulário, scroll no header) e mantém o **brief** e o roteiro da Aula 08 como referência.
 - **README.md (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
-- **Estrutura de pastas (ITCSS)**: OK — camadas consolidadas em `css/` e `css/components/` (sem duplicidade).
-- **`variables.css` (cores + tipografia)**: OK — tokens centralizados em `css/variables.css` (inclui `--color-primary-500` do checkpoint da Aula 09).
-- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/reset.css`.
+- **Estrutura de pastas (ITCSS)**: OK — camadas criadas em `css/settings/`, `css/generic/`, `css/elements/`, `css/objects/`, `css/components/`, `css/utilities/`.
+- **`variables.css` (cores + tipografia)**: OK — `css/settings/variables.css` com **paleta (>= 5 cores)** e **escala tipográfica completa** (tokens `--fs-200`…`--fs-900`).
+- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/generic/reset.css`.
 - **`index.html` (imports na ordem + HTML semântico)**: OK — imports na ordem ITCSS e uso de `header`, `nav`, `main`, `section`, `article`, `footer`.
+- **`js/main.js` (interatividade Aula 09)**: OK — menu, abas, formulário, tags dinâmicas, topo e estado `.header--scrolled` no scroll.
 - **Contraste WCAG AA (texto/fundo)**: OK — verificação feita com script local (`scripts/contrast-check.js`).
 
 #### Contraste (WCAG 2.1 — AA)
