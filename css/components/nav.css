@@ -20,7 +20,7 @@
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  color: var(--color-ink);
+  color: var(--color-text);
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -28,8 +28,8 @@
 .logo-mark {
   width: 36px;
   height: 36px;
-  background: var(--color-primary);
-  border-radius: 8px;
+  background: var(--color-brand);
+  border-radius: var(--radius-ui);
   position: relative;
 }
 
@@ -56,7 +56,7 @@
   height: 44px;
   padding: 0;
   border: 2px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-ui);
   background: var(--color-surface);
   cursor: pointer;
 }
@@ -66,7 +66,7 @@
   width: 20px;
   height: 2px;
   margin-inline: auto;
-  background: var(--color-ink);
+  background: var(--color-text);
 }
 
 .site-nav .nav-list {
@@ -94,17 +94,17 @@
 }
 
 .site-nav .nav-cta {
-  background: var(--color-primary);
-  color: #fff !important;
+  background: var(--color-brand);
+  color: var(--color-on-action) !important;
   padding: 0.5rem 1rem !important;
-  border-radius: 8px;
+  border-radius: var(--radius-ui);
   border-bottom: none !important;
 }
 
 .site-nav .nav-cta:hover,
 .site-nav .nav-cta:focus-visible {
-  background: var(--color-primary-hover);
-  color: #fff !important;
+  background: var(--color-brand-hover);
+  color: var(--color-on-action) !important;
 }
 
 @media (max-width: 860px) {

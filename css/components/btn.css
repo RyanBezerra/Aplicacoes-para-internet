@@ -10,7 +10,7 @@
   --btn-bg-hover: transparent;
   --btn-fg-hover: var(--color-text);
   --btn-border-hover: transparent;
-  --btn-focus-ring: var(--color-primary-500);
+  --btn-focus-ring: var(--color-focus-ring);
 
   display: inline-flex;
   align-items: center;
@@ -18,9 +18,9 @@
   gap: var(--space-xs);
   padding: 0.65rem 1.25rem;
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.2;
+  font-size: var(--fs-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
   border-radius: var(--radius);
   border: 2px solid var(--btn-border);
   background: var(--btn-bg);
@@ -44,7 +44,7 @@
 .btn:focus-visible {
   outline: 3px solid var(--btn-focus-ring);
   outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(46, 117, 182, 0.25);
+  box-shadow: 0 0 0 4px var(--color-btn-focus-glow);
 }
 
 .btn:disabled,
@@ -55,32 +55,32 @@
 
 /* --- Variante primária --- */
 .btn--primary {
-  --btn-bg: var(--color-primary-500);
-  --btn-fg: #ffffff;
-  --btn-border: var(--color-primary-500);
-  --btn-bg-hover: var(--color-primary-hover);
-  --btn-fg-hover: #ffffff;
-  --btn-border-hover: var(--color-primary-hover);
+  --btn-bg: var(--color-action-primary);
+  --btn-fg: var(--color-on-action);
+  --btn-border: var(--color-action-primary);
+  --btn-bg-hover: var(--color-action-primary-hover);
+  --btn-fg-hover: var(--color-on-action);
+  --btn-border-hover: var(--color-action-primary-hover);
   box-shadow: var(--shadow-sm);
 }
 
 /* --- Variante outline --- */
 .btn--outline {
   --btn-bg: transparent;
-  --btn-fg: var(--color-primary-500);
-  --btn-border: var(--color-primary-500);
-  --btn-bg-hover: var(--color-primary-500);
-  --btn-fg-hover: #ffffff;
-  --btn-border-hover: var(--color-primary-500);
+  --btn-fg: var(--color-highlight);
+  --btn-border: var(--color-highlight);
+  --btn-bg-hover: var(--color-highlight);
+  --btn-fg-hover: var(--color-on-action);
+  --btn-border-hover: var(--color-highlight);
 }
 
 /* --- Variante ghost (sem borda nem fundo) --- */
 .btn--ghost {
   --btn-bg: transparent;
-  --btn-fg: var(--color-primary-500);
+  --btn-fg: var(--color-highlight);
   --btn-border: transparent;
-  --btn-bg-hover: rgba(46, 117, 182, 0.12);
-  --btn-fg-hover: var(--color-primary-hover);
+  --btn-bg-hover: rgba(var(--_rgb-blue-500), 0.12);
+  --btn-fg-hover: var(--color-brand-hover);
   --btn-border-hover: transparent;
 }
 

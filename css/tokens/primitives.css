@@ -1,0 +1,50 @@
+:root {
+  /* Paleta bruta — prefixo _ = consumo apenas via tokens semânticos */
+
+  --_white: #ffffff;
+  --_neutral-50: #f9fafb;
+  --_neutral-100: #f4f1eb;
+  --_neutral-200: #e8e4dc;
+  --_neutral-500: #5c5c63;
+  --_neutral-900: #1c1c1e;
+
+  --_ink-950: #0a1628;
+  --_ink-900: #030712;
+
+  --_gray-700: #374151;
+  --_gray-800: #1f2937;
+  --_gray-850: #1a2230;
+  --_gray-900: #111827;
+  --_gray-950: #0f1419;
+
+  --_teal-700: #0d4f6c;
+  --_teal-800: #0a3d54;
+
+  --_blue-500: #2e75b6;
+  --_blue-600: #246094;
+
+  --_accent-500: #c73e2b;
+  --_accent-600: #a83222;
+
+  --_border-light: #d8d4cc;
+
+  --_success-700: #1b6b3b;
+
+  --_rgb-ink-950: 10, 22, 40;
+  --_rgb-teal-700: 13, 79, 108;
+  --_rgb-accent-500: 199, 62, 43;
+  --_rgb-blue-500: 46, 117, 182;
+
+  --_shadow-sm: 0 2px 8px rgba(var(--_rgb-ink-950), 0.06);
+  --_shadow-md: 0 8px 24px rgba(var(--_rgb-ink-950), 0.1);
+  --_shadow-lg: 0 14px 36px rgba(var(--_rgb-ink-950), 0.18);
+
+  --_radius-sm: 8px;
+  --_radius-md: 10px;
+  --_radius-lg: 14px;
+  --_radius-input: 12px;
+
+  --_header-h: 72px;
+
+  --_hero-image: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=75");
+}

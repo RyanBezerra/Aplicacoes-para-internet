@@ -7,22 +7,13 @@
   <title>Paraíba Turismo — Descubra o Nordeste</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
-  <!-- ITCSS: settings -> generic -> elements -> objects -> components -> utilities -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components/nav.css">
-  <link rel="stylesheet" href="css/components/navbar.css">
-  <link rel="stylesheet" href="css/components/hero.css">
-  <link rel="stylesheet" href="css/components/card.css">
-  <link rel="stylesheet" href="css/components/gastro.css">
-  <link rel="stylesheet" href="css/components/tabs.css">
-  <link rel="stylesheet" href="css/components/form.css">
-  <link rel="stylesheet" href="css/components/btn.css">
-  <link rel="stylesheet" href="css/components/footer.css">
-  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&amp;fit=crop&amp;w=1600&amp;q=75" fetchpriority="high">
+  <!-- Fontes sem bloquear render: aplica após carregar (noscript cobre JS desligado) -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet"></noscript>
+  <!-- ITCSS + tokens em um único arquivo: rode scripts/build-css.ps1 após editar css/ -->
+  <link rel="stylesheet" href="css/site.bundle.css">
 </head>
 <body>
   <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
@@ -91,7 +82,7 @@
         <div class="cards-grid" role="list">
           <article class="card card--media card--featured" role="listitem">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80" alt="Orla com coqueiros e mar em dia ensolarado" width="800" height="450" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&amp;q=80" alt="Orla com coqueiros e mar em dia ensolarado" width="800" height="450" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <h3>João Pessoa</h3>
@@ -101,7 +92,7 @@
           </article>
           <article class="card card--media" role="listitem">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80" alt="Multidão em evento ao ar livre com iluminação festiva" width="800" height="450" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&amp;q=80" alt="Multidão em evento ao ar livre com iluminação festiva" width="800" height="450" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <h3>Campina Grande</h3>
@@ -111,7 +102,7 @@
           </article>
           <article class="card card--media" role="listitem">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Costa com falésias e mar azul visto de cima" width="800" height="450" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&amp;q=80" alt="Costa com falésias e mar azul visto de cima" width="800" height="450" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <h3>Praias do litoral sul</h3>
@@ -121,7 +112,7 @@
           </article>
           <article class="card card--media" role="listitem">
             <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80" alt="Paisagem de caatinga com vegetação seca e horizonte amplo" width="800" height="450" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&amp;q=80" alt="Paisagem de caatinga com vegetação seca e horizonte amplo" width="800" height="450" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <h3>Sertão paraibano</h3>
@@ -151,7 +142,7 @@
         </div>
         <div class="split-visual">
           <figure class="culture-figure">
-            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80" alt="Ruas de cidade histórica com edifícios coloridos sob céu azul" width="900" height="600" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&amp;q=80" alt="Ruas de cidade histórica com edifícios coloridos sob céu azul" width="900" height="600" loading="lazy" decoding="async">
           </figure>
           <aside class="split-aside" aria-label="Destaque cultural">
             <blockquote class="quote-block">
@@ -181,7 +172,7 @@
         <div class="gastro-grid" role="list">
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=640&q=80" alt="Pratos variados sobre mesa — referência à culinária regional" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=640&amp;q=80" alt="Pratos variados sobre mesa — referência à culinária regional" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Tapioca e queijo coalho</h3>
@@ -190,7 +181,7 @@
           </article>
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=640&q=80" alt="Salada colorida com legumes frescos em tigela" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=640&amp;q=80" alt="Salada colorida com legumes frescos em tigela" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Moquecas e peixada</h3>
@@ -199,7 +190,7 @@
           </article>
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=640&q=80" alt="Prato com frutos do mar — camarões e temperos" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=640&amp;q=80" alt="Prato com frutos do mar — camarões e temperos" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Sururu e caldinho</h3>
@@ -208,7 +199,7 @@
           </article>
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=640&q=80" alt="Carne assada na grelha com temperos" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=640&amp;q=80" alt="Carne assada na grelha com temperos" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Carne de sol</h3>
@@ -217,7 +208,7 @@
           </article>
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1563805042-7684c019e650?w=640&q=80" alt="Sobremesa com banana e cobertura escura em prato branco" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=640&amp;q=80" alt="Camadas de bolo e chocolate — referência a doces regionais" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Cartola e doces de banana</h3>
@@ -226,7 +217,7 @@
           </article>
           <article class="gastro-card" role="listitem">
             <div class="gastro-card-media">
-              <img src="https://images.unsplash.com/photo-1514362548677-3f69c27e5036?w=640&q=80" alt="Taças com drinks e gelo — ambiente de bar" width="640" height="400" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=640&amp;q=80" alt="Coquetel com hortelã e gelo — ambiente de bar" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="gastro-card-body">
               <h3>Cachaça artesanal</h3>
@@ -337,6 +328,7 @@
     </div>
     <div class="container footer-bottom">
       <p>© <span id="anoAtual"></span> — Feito com HTML, CSS e JavaScript</p>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Ativar tema escuro">Tema escuro</button>
     </div>
   </footer>
 

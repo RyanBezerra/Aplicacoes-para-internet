@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
-  line-height: 1.6;
+  line-height: var(--line-height-body);
   color: var(--color-text);
   background-color: var(--color-bg);
 }
@@ -29,8 +29,8 @@ textarea {
   top: 0;
   z-index: 100;
   padding: 0.75rem 1rem;
-  background: var(--color-primary);
-  color: #fff;
+  background: var(--color-brand);
+  color: var(--color-on-action);
   font-weight: 600;
   text-decoration: none;
 }
