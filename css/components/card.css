@@ -16,7 +16,7 @@
 
 .card:hover {
   box-shadow: var(--shadow-md);
-  border-color: rgba(13, 79, 108, 0.35);
+  border-color: var(--color-border-interactive);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -47,13 +47,13 @@
 
 .card-icon {
   font-size: 1.25rem;
-  color: var(--color-primary);
+  color: var(--color-brand);
   margin-bottom: 0.25rem;
 }
 
 .card h3,
 .card-body h3 {
-  font-size: 1.15rem;
+  font-size: var(--fs-card-title);
   margin: 0;
   font-family: var(--font-display);
 }
@@ -63,13 +63,13 @@
   margin: 0;
   flex: 1;
   color: var(--color-muted);
-  font-size: 0.98rem;
+  font-size: var(--fs-body-sm);
 }
 
 .card-link {
   margin-top: 0.5rem;
-  font-weight: 600;
-  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
   text-decoration: none;
 }
 
@@ -82,7 +82,7 @@
    recebe um leve realce visual.
 */
 .card--featured {
-  border-color: var(--color-primary-500);
+  border-color: var(--color-highlight);
   box-shadow: var(--shadow-md);
   position: relative;
 }
@@ -94,16 +94,16 @@
   left: 1rem;
   z-index: 1;
   padding: 0.25rem 0.65rem;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: var(--fs-xs);
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #ffffff;
-  background: var(--color-primary-500);
+  color: var(--color-on-action);
+  background: var(--color-highlight);
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
 }
 
 .card--featured:hover {
-  box-shadow: 0 14px 36px rgba(10, 22, 40, 0.18);
+  box-shadow: var(--shadow-lg);
 }

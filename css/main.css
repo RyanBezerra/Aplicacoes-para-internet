@@ -1,0 +1,24 @@
+/*
+  ITCSS + Design Tokens (Aula 10).
+  Em desenvolvimento local você pode trocar o <link> do index para href="css/main.css"
+  (vários @import). Em entrega / produção use css/site.bundle.css gerado por scripts/build-css.ps1
+  — a ordem dos arquivos no script espelha esta lista.
+*/
+
+@import "tokens/primitives.css";
+@import "tokens/spacing.css";
+@import "tokens/typography.css";
+@import "tokens/semantic.css";
+@import "reset.css";
+@import "base.css";
+@import "layout.css";
+@import "components/nav.css";
+@import "components/navbar.css";
+@import "components/hero.css";
+@import "components/card.css";
+@import "components/gastro.css";
+@import "components/tabs.css";
+@import "components/form.css";
+@import "components/btn.css";
+@import "components/footer.css";
+@import "utilities.css";

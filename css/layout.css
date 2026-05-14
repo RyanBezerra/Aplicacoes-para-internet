@@ -7,9 +7,11 @@
   width: min(640px, 92vw);
 }
 
-/* Sections */
+/* Sections — content-visibility reduz trabalho de pintura/layout fora da viewport */
 .section {
   padding: clamp(3rem, 6vw, 4.5rem) 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
 }
 
 .section-alt {
@@ -18,7 +20,7 @@
 
 .section-accent {
   background: var(--color-ink);
-  color: #fff;
+  color: var(--color-on-inverse);
 }
 
 .section-head {
@@ -31,7 +33,7 @@
 
 .section-head h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 3vw, 2rem);
+  font-size: var(--fs-section-title);
   margin: 0 0 0.85rem;
   letter-spacing: -0.02em;
 }
@@ -39,16 +41,16 @@
 .section-head p {
   margin: 0;
   color: var(--color-muted);
-  line-height: 1.65;
+  line-height: var(--line-height-relaxed);
 }
 
 .section-head-light p,
 .section-head-light .gastro-lead {
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--color-on-inverse-muted);
 }
 
 .section-accent .section-head h2 {
-  color: #fff;
+  color: var(--color-on-inverse);
 }
 
 /* Grids */
@@ -95,7 +97,7 @@
 
 .split-text h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 3vw, 2rem);
+  font-size: var(--fs-section-title);
   margin: 0 0 1rem;
 }
 
@@ -148,7 +150,7 @@
   font-family: var(--font-display);
   font-size: 1.15rem;
   margin: 0 0 1rem;
-  color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .quote-block footer {

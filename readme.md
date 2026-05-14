@@ -1,7 +1,7 @@
-### Aplicações para Internet — Aula 09
-### JavaScript na página — interatividade e comportamentos
+### Aplicações para Internet — Aula 10
+### ITCSS + design tokens e CSS em produção (bundle)
 
-Esta entrega evolui o projeto da **Aula 08** (layout responsivo com Flexbox, Grid e media queries), acrescentando **JavaScript em arquivo externo** (`js/main.js`), **padrões de acessibilidade** (teclado e ARIA) e **feedback visual** ao rolar a página.
+Esta entrega corresponde à **Aula 10**, com foco em **tokens de design**, **organização em camadas ITCSS** (arquivos modulares em `css/`) e **uma única folha de estilo em produção** (`css/site.bundle.css`, gerada por `scripts/build-css.ps1`). O projeto **mantém** o que foi consolidado na **Aula 08** (layout responsivo com Flexbox, Grid e media queries) e na **Aula 09** (**JavaScript** em `js/main.js`, **acessibilidade** com teclado e ARIA, componentes interativos e **feedback visual** no cabeçalho ao rolar a página).
 
 - ### Brief do projeto (requisitos)
 - **1) Contexto (2–3 frases)**: Projeto de **landing page** em **HTML/CSS** para praticar **layout responsivo**. O foco é reorganizar o conteúdo com **Flexbox/Grid** e **media queries** em três breakpoints.
@@ -9,24 +9,34 @@ Esta entrega evolui o projeto da **Aula 08** (layout responsivo com Flexbox, Gri
 - **3) Dor principal**: O usuário não consegue **ler e navegar bem em diferentes telas** quando o layout não é responsivo (quebras/overflow/zoom).
 - **4) Critério de sucesso**: **O usuário consegue** usar o site em **375px, 768px e 1024px** sem scroll horizontal, com texto/imagens legíveis e navegação clara.
 
-- **Stack**: HTML5 / CSS3  
+- **Stack**: HTML5 / CSS3 / JavaScript (Vanilla)  
+- **CSS em produção**: um único arquivo `css/site.bundle.css`, gerado pelo script `scripts/build-css.ps1` (ordem ITCSS). Em desenvolvimento, é possível apontar o `<link>` para `css/main.css` (cadeia de `@import`).
 - **Carga horária**: 2 horas  
 - **Professor**: Jeofton Costa  
 
-### Conteúdo desta aula
+### Conteúdo desta aula (Aula 10 — foco atual)
+- **Design tokens**: primitives, espaçamento, tipografia e tokens semânticos em `css/tokens/` (incluindo variáveis para **tema escuro** via `[data-theme="dark"]`)
+- **ITCSS modular**: `reset`, `base`, `layout`, `components` e `utilities` em arquivos separados, com ordem explícita em `css/main.css` (desenvolvimento)
+- **Build de CSS**: script **`scripts/build-css.ps1`** concatena os módulos e gera **`css/site.bundle.css`** (menos requisições no navegador)
+- **Entrega e performance de CSS**: `index.html` referencia o bundle; `preconnect` / `preload` e carregamento não bloqueante de fontes no `<head>`
+
+### Conteúdo integrado da Aula 09 (mantido no projeto)
 - **JavaScript no front-end**: arquivo externo, escopo com IIFE e boas práticas (`strict`)
 - **DOM e eventos**: `addEventListener`, manipulação de classes e atributos ARIA
 - **Acessibilidade em componentes**: menu expansível, abas (`role="tablist"` / teclado), formulário com `aria-live`
 - **Performance em scroll**: `requestAnimationFrame`, listener `passive` e estado visual no cabeçalho
 - **Validação de formulário**: campos obrigatórios e formato de e-mail no cliente (demonstração, sem envio ao servidor)
+- **Tema claro/escuro (UI)**: botão no rodapé, `data-theme` no `<html>` e persistência em `localStorage` (demonstração)
 
-### Alterações realizadas nesta versão (Aula 09)
+### Alterações realizadas nesta versão (Aula 10)
 
-- **`index.html`**: inclusão de `<script src="js/main.js" defer></script>`; **skip link** “Ir para o conteúdo”; **cabeçalho** com botão **menu hambúrguer** (`#navToggle`) e navegação associada (`aria-expanded`, `aria-controls`); **abas de roteiros** (`data-tabs`, `role="tab"` / `tabpanel`); **formulário de contato** com `novalidate`, hints e região de feedback (`#formFeedback`, `role="status"`); **rodapé** com ano dinâmico (`#anoAtual`) e botão **voltar ao topo** (`#btnTopo`).
-- **`js/main.js`**: menu mobile (abrir/fechar, fechar ao seguir âncora em telas ≤860px, **Escape**); **abas** com suporte a **setas**, **Home** e **End**; **lista de sabores** da gastronomia injetada na grade de tags; **validação** do formulário e mensagens de sucesso/erro; **scroll suave** para o topo com devolução de foco ao `#topo`; **desafio extra da aula**: ao rolar mais de **80px**, aplica a classe **`header--scrolled`** no `.site-header` usando **`requestAnimationFrame`** para não sobrecarregar o scroll.
-- **`css/components/navbar.css`** (e demais estilos já existentes): estilos para o **estado com rolagem** (`.site-header.header--scrolled`), com transição visual do cabeçalho compacto sobre o fundo da página.
+- **Organização CSS (ITCSS + tokens — núcleo da Aula 10)**: estilos em `css/tokens/` (`primitives`, `spacing`, `typography`, `semantic`), `css/reset.css`, `css/base.css`, `css/layout.css`, `css/components/*.css`, `css/utilities.css`. O arquivo `css/variables.css` **aponta** para a migração para tokens. **`css/main.css`** importa os módulos na ordem ITCSS para desenvolvimento local.
+- **`scripts/build-css.ps1`**: concatena os arquivos nessa ordem e grava **`css/site.bundle.css`** (UTF-8 sem BOM).
+- **`index.html`**: folha principal **`css/site.bundle.css`** (com orientação no HTML para rodar o build após editar `css/`); no `<head>`, `preconnect`/`preload` e fontes **sem bloquear render**; **skip link**; **cabeçalho** com menu **hambúrguer** e ARIA; **abas** de roteiros; **formulário** com feedback acessível; **rodapé** com ano dinâmico, **voltar ao topo** e **alternância de tema** (`#themeToggle`); `<script src="js/main.js" defer></script>`.
+- **`js/main.js`**: menu mobile, **abas** (teclado), **tags** de gastronomia, **validação** do formulário, **scroll** para o topo, **tema** (`data-theme`, chave `pb-theme` em `localStorage`, ARIA) e **`header--scrolled`** com **`requestAnimationFrame`** (desafio da Aula 09).
+- **`css/components/navbar.css`**: cabeçalho responsivo e estado **`.site-header.header--scrolled`**.
 
-> **Nota:** O roteiro passo a passo da seção **“Etapa prática — Roteiro”** abaixo corresponde ao trabalho de **responsividade da Aula 08** e permanece como referência do que já foi aplicado na base do layout.
+> **Nota:** O roteiro passo a passo da seção **“Etapa prática — Roteiro”** abaixo corresponde ao trabalho de **responsividade da Aula 08** e permanece como referência do que já foi aplicado na base do layout. Os exemplos citam um `style.css` único; neste repositório o equivalente é o **bundle** (ou `main.css` em dev).
 
 ### Etapa prática — Roteiro
 ### Tornando o projeto da dupla responsivo
@@ -41,7 +51,7 @@ Você deve aplicar **Flexbox e/ou Grid** para redistribuir os elementos, **Media
 
 #### 7.2 Pré-requisitos e setup
 - **Estrutura semântica** no HTML (ex.: `header`, `main`, `footer`, etc.)
-- **CSS em arquivo externo** (ex.: `style.css`)
+- **CSS em arquivo externo** (neste projeto: `css/site.bundle.css` após rodar `scripts/build-css.ps1`, ou `css/main.css` com `@import` durante o desenvolvimento)
 - **Meta tag viewport** configurada no HTML
 - **VS Code + Live Server**
 - **Chrome DevTools** com **Device Toolbar** (`Ctrl+Shift+M`) para testar breakpoints
@@ -229,14 +239,23 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 
 ### Checklist de entrega (auditoria)
 
-- **README.md (Aula 09)**: OK — identifica a **aula atual**, resume **alterações** (JS, ARIA, formulário, scroll no header) e mantém o **brief** e o roteiro da Aula 08 como referência.
-- **README.md (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
-- **Estrutura de pastas (ITCSS)**: OK — camadas criadas em `css/settings/`, `css/generic/`, `css/elements/`, `css/objects/`, `css/components/`, `css/utilities/`.
-- **`variables.css` (cores + tipografia)**: OK — `css/settings/variables.css` com **paleta (>= 5 cores)** e **escala tipográfica completa** (tokens `--fs-200`…`--fs-900`).
-- **`reset.css` (Modern CSS Reset)**: OK — aplicado em `css/generic/reset.css`.
-- **`index.html` (imports na ordem + HTML semântico)**: OK — imports na ordem ITCSS e uso de `header`, `nav`, `main`, `section`, `article`, `footer`.
-- **`js/main.js` (interatividade Aula 09)**: OK — menu, abas, formulário, tags dinâmicas, topo e estado `.header--scrolled` no scroll.
+- **README (Aula 10)**: OK — identifica a **aula atual**, resume **tokens + ITCSS + bundle**, integração com o trabalho das **Aulas 08–09** (JS, ARIA, formulário, scroll no header, tema) e mantém o **brief** e o roteiro da Aula 08 como referência.
+- **README (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
+- **Estrutura de pastas (ITCSS + tokens)**: OK — `css/tokens/` (primitives, spacing, typography, semantic), `css/reset.css`, `css/base.css`, `css/layout.css`, `css/components/`, `css/utilities.css`; ordem espelhada em `css/main.css` e em `scripts/build-css.ps1`.
+- **Tokens (cores + tipografia + espaçamento)**: OK — definidos principalmente em `css/tokens/`; `css/variables.css` remete à migração para tokens.
+- **`reset.css`**: OK — `css/reset.css`, incluído no bundle.
+- **`index.html` (HTML semântico + performance)**: OK — `header`, `nav`, `main`, `section`, `footer`; carrega **`css/site.bundle.css`**; otimizações de fonte/imagem no `<head>`.
+- **`js/main.js`**: OK — menu, abas, formulário, tags dinâmicas, topo, **tema** (`data-theme` + `localStorage`) e estado `.header--scrolled` no scroll.
+- **`scripts/build-css.ps1`**: OK — gera `css/site.bundle.css` a partir dos módulos.
 - **Contraste WCAG AA (texto/fundo)**: OK — verificação feita com script local (`scripts/contrast-check.js`).
+
+#### Regenerar o CSS após editar arquivos em `css/`
+
+No PowerShell, na raiz do repositório:
+
+```powershell
+.\scripts\build-css.ps1
+```
 
 #### Contraste (WCAG 2.1 — AA)
 

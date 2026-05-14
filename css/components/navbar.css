@@ -10,8 +10,8 @@
 }
 
 .site-header.header--scrolled {
-  box-shadow: 0 6px 18px rgba(10, 22, 40, 0.12);
-  background-color: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 18px var(--color-header-scrolled-shadow);
+  background-color: var(--color-header-scrolled-bg);
   backdrop-filter: saturate(140%) blur(6px);
   -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
