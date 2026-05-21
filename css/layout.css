@@ -53,8 +53,10 @@
   color: var(--color-on-inverse);
 }
 
-/* Grids */
+/* Grids — container query no card (Aula 11, Caminho B) */
 .cards-grid {
+  container-type: inline-size;
+  container-name: destinos;
   display: grid;
   grid-template-columns: 1fr; /* mobile-first: 1 coluna */
   gap: 1.35rem;
@@ -80,7 +82,7 @@
 
 .split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: start;
 }
@@ -89,9 +91,9 @@
   align-items: stretch;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .split {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

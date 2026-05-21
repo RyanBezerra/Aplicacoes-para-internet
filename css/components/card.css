@@ -14,14 +14,52 @@
   padding: 0;
 }
 
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border-interactive);
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-interactive);
+  }
+
+  .card--featured:hover {
+    box-shadow: var(--shadow-lg);
+  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card--media:hover {
     transform: translateY(-3px);
+  }
+}
+
+/* Container query — layout do card pelo espaço do grid, não só pelo viewport */
+@container destinos (min-width: 500px) {
+  .card--media:not(.card--featured) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .card--media:not(.card--featured) .card-media {
+    width: 42%;
+    max-width: 200px;
+    flex-shrink: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .card--media:not(.card--featured) .card-body {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@container destinos (min-width: 720px) {
+  .card--featured.card--media {
+    flex-direction: row;
+  }
+
+  .card--featured.card--media .card-media {
+    width: 50%;
+    max-width: none;
+    flex: 1;
   }
 }
 
@@ -73,8 +111,10 @@
   text-decoration: none;
 }
 
-.card-link:hover {
-  text-decoration: underline;
+@media (hover: hover) {
+  .card-link:hover {
+    text-decoration: underline;
+  }
 }
 
 /* --- Card em destaque (Aula 09 — Passo 5) ---
@@ -102,8 +142,4 @@
   background: var(--color-highlight);
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
-}
-
-.card--featured:hover {
-  box-shadow: var(--shadow-lg);
 }
