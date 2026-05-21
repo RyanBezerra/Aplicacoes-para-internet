@@ -1,0 +1,42 @@
+/*
+  ITCSS + Design Tokens (Aula 10) + Cascade Layers (Aula 11).
+  Desenvolvimento: href="css/main.css". Produção: scripts/build-css.ps1 → site.bundle.css
+*/
+
+@layer tokens, reset, base, layout, components, overrides;
+
+@layer tokens {
+  @import "tokens/primitives.css";
+  @import "tokens/spacing.css";
+  @import "tokens/typography.css";
+  @import "tokens/semantic.css";
+}
+
+@layer reset {
+  @import "reset.css";
+}
+
+@layer base {
+  @import "base.css";
+}
+
+@layer layout {
+  @import "layout.css";
+}
+
+@layer components {
+  @import "components/nav.css";
+  @import "components/navbar.css";
+  @import "components/hero.css";
+  @import "components/card.css";
+  @import "components/gastro.css";
+  @import "components/tabs.css";
+  @import "components/form.css";
+  @import "components/btn.css";
+  @import "components/footer.css";
+  @import "utilities.css";
+}
+
+@layer overrides {
+  @import "overrides.css";
+}

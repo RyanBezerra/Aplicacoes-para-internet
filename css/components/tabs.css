@@ -13,12 +13,12 @@
 
 .tab-btn {
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--fs-md);
+  font-weight: var(--font-weight-semibold);
   padding: 0.55rem 1.2rem;
   border: 2px solid var(--color-border);
   background: var(--color-surface);
-  border-radius: 8px;
+  border-radius: var(--radius-ui);
   cursor: pointer;
   color: var(--color-text);
 }
@@ -29,9 +29,9 @@
 }
 
 .tab-btn.is-active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-on-action);
 }
 
 .tab-panel {
@@ -40,10 +40,6 @@
   border-radius: var(--radius-lg);
   padding: 1.5rem 1.5rem 1.5rem 1.75rem;
   box-shadow: var(--shadow-sm);
-}
-
-.tab-panel[hidden] {
-  display: none !important;
 }
 
 .roteiro-list {

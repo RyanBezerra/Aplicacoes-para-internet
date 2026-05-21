@@ -9,6 +9,7 @@
   var btnTopo = document.getElementById("btnTopo");
   var anoAtual = document.getElementById("anoAtual");
   var tagsGastro = document.getElementById("tagsGastro");
+  var themeToggle = document.getElementById("themeToggle");
 
   var sabores = [
     "Tapioca e queijo coalho",
@@ -27,6 +28,49 @@
 
   if (anoAtual) {
     anoAtual.textContent = String(new Date().getFullYear());
+  }
+
+  var THEME_KEY = "pb-theme";
+  function applyTheme(mode) {
+    var root = document.documentElement;
+    if (mode === "dark") {
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    if (themeToggle) {
+      var isDark = mode === "dark";
+      themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+      themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Ativar tema claro" : "Ativar tema escuro"
+      );
+      themeToggle.textContent = isDark ? "Tema claro" : "Tema escuro";
+    }
+    try {
+      localStorage.setItem(THEME_KEY, mode);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var next =
+        document.documentElement.getAttribute("data-theme") === "dark"
+          ? "light"
+          : "dark";
+      applyTheme(next);
+    });
+  }
+
+  try {
+    var storedTheme = localStorage.getItem(THEME_KEY);
+    if (storedTheme === "dark" || storedTheme === "light") {
+      applyTheme(storedTheme);
+    }
+  } catch (e) {
+    /* ignore */
   }
 
   function closeMenu() {
@@ -114,13 +158,15 @@
   }
 
   if (tagsGastro) {
+    var frag = document.createDocumentFragment();
     sabores.forEach(function (texto) {
       var span = document.createElement("span");
       span.className = "tag-pill";
       span.setAttribute("role", "listitem");
       span.textContent = texto;
-      tagsGastro.appendChild(span);
+      frag.appendChild(span);
     });
+    tagsGastro.appendChild(frag);
     tagsGastro.setAttribute("role", "list");
   }
 
@@ -190,5 +236,15 @@
 
     updateHeaderState();
   }
+
+  /* Aula 11 — indicador de navegação por teclado (Tab) */
+  document.body.addEventListener("keydown", function (e) {
+    if (e.key === "Tab") {
+      document.body.classList.add("using-keyboard");
+    }
+  });
+  document.body.addEventListener("mousedown", function () {
+    document.body.classList.remove("using-keyboard");
+  });
 
 })();

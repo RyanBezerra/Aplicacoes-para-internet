@@ -7,7 +7,7 @@
   max-width: 68ch;
   margin: 0 auto 2.25rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--color-on-inverse-muted);
   line-height: 1.7;
 }
 
@@ -16,11 +16,13 @@
 }
 
 .gastro-intro strong {
-  color: #fff;
+  color: var(--color-on-inverse);
   font-weight: 600;
 }
 
 .gastro-grid {
+  container-type: inline-size;
+  container-name: gastro;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.35rem;
@@ -30,22 +32,44 @@
 .gastro-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--color-gastro-card-bg);
+  border: 1px solid var(--color-gastro-card-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.gastro-card:hover {
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+@media (hover: hover) {
+  .gastro-card:hover {
+    border-color: var(--color-gastro-card-border-hover);
+    box-shadow: 0 12px 32px var(--color-gastro-shadow);
+  }
+}
+
+@container gastro (min-width: 420px) {
+  .gastro-card {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .gastro-card-media {
+    width: 38%;
+    max-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .gastro-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .gastro-card-media {
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--color-gastro-media-bg);
 }
 
 .gastro-card-media img {
@@ -62,13 +86,13 @@
   font-family: var(--font-display);
   font-size: 1.2rem;
   margin: 0 0 0.5rem;
-  color: #fff;
+  color: var(--color-on-inverse);
 }
 
 .gastro-card-body p {
   margin: 0;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--color-gastro-body-muted);
   line-height: 1.55;
 }
 
@@ -76,7 +100,7 @@
   text-align: center;
   font-size: 0.95rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--color-on-inverse-subtle);
   margin: 2rem 0 0.85rem;
 }
 
@@ -90,8 +114,8 @@
 .tag-pill {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--color-gastro-tag-bg);
+  border: 1px solid var(--color-gastro-tag-border);
   border-radius: 999px;
   font-size: 0.95rem;
   font-weight: 500;

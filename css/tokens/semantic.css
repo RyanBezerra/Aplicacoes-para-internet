@@ -1,0 +1,112 @@
+:root {
+  /* Checkpoint Aula 10: alterar --color-action-primary atualiza CTAs (.btn-primary, .btn--primary). */
+  --color-bg: var(--_neutral-100);
+  --color-surface: var(--_white);
+  --color-text: var(--_neutral-900);
+  --color-muted: var(--_neutral-500);
+  --color-ink: var(--_ink-950);
+  --color-border: var(--_border-light);
+  --color-hero-side: var(--_neutral-200);
+
+  /* Marca (teal) — navegação, hero, links de conteúdo */
+  --color-brand: var(--_teal-700);
+  --color-brand-hover: var(--_teal-800);
+
+  /* Ação primária (CTAs principais: botões .btn-primary, envio de formulário) */
+  --color-action-primary: var(--_accent-500);
+  --color-action-primary-hover: var(--_accent-600);
+
+  /* Destaque / foco acessível (material Aula 09) */
+  --color-highlight: var(--_blue-500);
+  --color-highlight-hover: var(--_blue-600);
+  --color-focus-ring: var(--_blue-500);
+
+  /* Texto sobre fundos escuros ou coloridos */
+  --color-on-action: var(--_white);
+  --color-on-inverse: var(--_white);
+
+  /* Compatibilidade: accent = ação primária neste projeto */
+  --color-accent: var(--color-action-primary);
+  --color-accent-hover: var(--color-action-primary-hover);
+
+  /* Aliases legados usados nos componentes */
+  --color-primary: var(--color-brand);
+  --color-primary-hover: var(--color-brand-hover);
+  --color-primary-500: var(--color-highlight);
+
+  --shadow-sm: var(--_shadow-sm);
+  --shadow-md: var(--_shadow-md);
+  --shadow-lg: var(--_shadow-lg);
+
+  --radius: var(--_radius-md);
+  --radius-lg: var(--_radius-lg);
+  --radius-input: var(--_radius-input);
+  --radius-ui: var(--_radius-sm);
+
+  --header-h: var(--_header-h);
+
+  --color-border-interactive: rgba(var(--_rgb-teal-700), 0.35);
+  --color-focus-shadow: rgba(var(--_rgb-teal-700), 0.22);
+  --color-btn-focus-glow: rgba(var(--_rgb-blue-500), 0.25);
+
+  --gradient-hero: linear-gradient(
+    125deg,
+    rgba(var(--_rgb-teal-700), 0.93) 0%,
+    rgba(var(--_rgb-ink-950), 0.88) 45%,
+    rgba(var(--_rgb-teal-700), 0.82) 100%
+  );
+  --hero-image: var(--_hero-image);
+
+  --color-hero-overlay: rgba(var(--_rgb-accent-500), 0.15);
+  --color-hero-panel-bg: rgba(248, 246, 242, 0.97);
+
+  --color-success: var(--_success-700);
+
+  --color-on-inverse-muted: rgba(255, 255, 255, 0.88);
+  --color-on-inverse-subtle: rgba(255, 255, 255, 0.75);
+  --color-on-inverse-faint: rgba(255, 255, 255, 0.65);
+  --color-on-inverse-border: rgba(255, 255, 255, 0.4);
+  --color-on-inverse-divider: rgba(255, 255, 255, 0.15);
+  --color-on-inverse-hover-fill: rgba(255, 255, 255, 0.1);
+  --color-on-inverse-ghost-hover: rgba(255, 255, 255, 0.12);
+
+  --color-gastro-card-bg: rgba(255, 255, 255, 0.06);
+  --color-gastro-card-border: rgba(255, 255, 255, 0.14);
+  --color-gastro-card-border-hover: rgba(255, 255, 255, 0.28);
+  --color-gastro-shadow: rgba(0, 0, 0, 0.25);
+  --color-gastro-media-bg: rgba(0, 0, 0, 0.25);
+  --color-gastro-tag-bg: rgba(255, 255, 255, 0.12);
+  --color-gastro-tag-border: rgba(255, 255, 255, 0.35);
+  --color-gastro-body-muted: rgba(255, 255, 255, 0.78);
+
+  --color-header-scrolled-shadow: rgba(var(--_rgb-ink-950), 0.12);
+  --color-header-scrolled-bg: color-mix(in srgb, var(--color-surface) 96%, transparent);
+
+  --color-text-shadow-hero: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--_gray-950);
+  --color-surface: var(--_gray-850);
+  --color-text: var(--_neutral-50);
+  --color-muted: #9ca3af;
+  --color-border: var(--_gray-700);
+  --color-hero-side: var(--_gray-800);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.5);
+
+  --color-border-interactive: rgba(125, 211, 252, 0.45);
+  --color-focus-shadow: rgba(56, 189, 248, 0.25);
+  --color-hero-panel-bg: color-mix(in srgb, var(--color-surface) 92%, transparent);
+
+  --gradient-hero: linear-gradient(
+    125deg,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(13, 79, 108, 0.88) 50%,
+    rgba(15, 23, 42, 0.9) 100%
+  );
+
+  --color-on-inverse-divider: rgba(255, 255, 255, 0.12);
+}
