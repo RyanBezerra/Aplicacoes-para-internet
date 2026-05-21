@@ -1,4 +1,8 @@
-/* css/tokens/primitives.css */
+/* Paraiba Turismo - bundle (Aula 11: @layer + ITCSS) */
+@layer tokens, reset, base, layout, components, overrides;
+
+@layer tokens {
+  /* css/tokens/primitives.css */
 :root {
   /* Paleta bruta — prefixo _ = consumo apenas via tokens semânticos */
 
@@ -50,7 +54,7 @@
   --_hero-image: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=75");
 }
 
-/* css/tokens/spacing.css */
+  /* css/tokens/spacing.css */
 :root {
   /* Escala múltipla de 4px (16px = 1rem) */
   --space-0: 0;
@@ -74,7 +78,12 @@
   --space-xl: var(--space-12);
 }
 
-/* css/tokens/typography.css */
+  /* css/tokens/typography.css */
+/* Escala fluida na raiz — 1rem nos tokens acompanha o viewport (Aula 11) */
+html {
+  font-size: clamp(16px, 1.1vw, 20px);
+}
+
 :root {
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Fraunces", Georgia, serif;
@@ -89,7 +98,7 @@
   --line-height-relaxed: 1.65;
   --line-height-hero: 1.15;
 
-  --fs-base: clamp(0.875rem, 2vw, 1rem);
+  --fs-base: clamp(1rem, 1.5vw, 1.125rem);
   --fs-h1: clamp(1.75rem, 4vw, 2.5rem);
   --fs-h2: clamp(1.25rem, 3vw, 1.875rem);
   --fs-hero: clamp(2rem, 4.5vw, 2.75rem);
@@ -106,7 +115,7 @@
   --fs-caption: 0.875rem;
 }
 
-/* css/tokens/semantic.css */
+  /* css/tokens/semantic.css */
 :root {
   /* Checkpoint Aula 10: alterar --color-action-primary atualiza CTAs (.btn-primary, .btn--primary). */
   --color-bg: var(--_neutral-100);
@@ -220,7 +229,10 @@
   --color-on-inverse-divider: rgba(255, 255, 255, 0.12);
 }
 
-/* css/reset.css */
+}
+
+@layer reset {
+  /* css/reset.css */
 *,
 *::before,
 *::after {
@@ -253,7 +265,10 @@ iframe {
   display: block;
 }
 
-/* css/base.css */
+}
+
+@layer base {
+  /* css/base.css */
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -296,7 +311,10 @@ textarea {
   top: 0.5rem;
 }
 
-/* css/layout.css */
+}
+
+@layer layout {
+  /* css/layout.css */
 .container {
   width: min(1120px, 92vw);
   margin-inline: auto;
@@ -352,8 +370,10 @@ textarea {
   color: var(--color-on-inverse);
 }
 
-/* Grids */
+/* Grids — container query no card (Aula 11, Caminho B) */
 .cards-grid {
+  container-type: inline-size;
+  container-name: destinos;
   display: grid;
   grid-template-columns: 1fr; /* mobile-first: 1 coluna */
   gap: 1.35rem;
@@ -379,7 +399,7 @@ textarea {
 
 .split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: start;
 }
@@ -388,9 +408,9 @@ textarea {
   align-items: stretch;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .split {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -457,7 +477,10 @@ textarea {
   color: var(--color-muted);
 }
 
-/* css/components/nav.css */
+}
+
+@layer components {
+  /* css/components/nav.css */
 .site-header {
   position: sticky;
   top: 0;
@@ -555,16 +578,16 @@ textarea {
 
 .site-nav .nav-cta {
   background: var(--color-brand);
-  color: var(--color-on-action) !important;
-  padding: 0.5rem 1rem !important;
+  color: var(--color-on-action);
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-ui);
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .site-nav .nav-cta:hover,
 .site-nav .nav-cta:focus-visible {
   background: var(--color-brand-hover);
-  color: var(--color-on-action) !important;
+  color: var(--color-on-action);
 }
 
 @media (max-width: 860px) {
@@ -613,7 +636,7 @@ textarea {
   }
 }
 
-/* css/components/navbar.css */
+  /* css/components/navbar.css */
 /* Navbar — extensões da Aula 09 (Desafio Extra)
    - Estado .header--scrolled aplicado via JS ao rolar > 80px
    - Reduz o padding e aumenta a sombra para dar sensação de "fixar"
@@ -654,7 +677,7 @@ textarea {
   }
 }
 
-/* css/components/hero.css */
+  /* css/components/hero.css */
 .hero {
   padding: clamp(2.5rem, 6vw, 4.5rem) 0;
   background: var(--color-brand);
@@ -769,7 +792,7 @@ textarea {
   color: var(--color-muted);
 }
 
-/* css/components/card.css */
+  /* css/components/card.css */
 .card {
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -786,14 +809,52 @@ textarea {
   padding: 0;
 }
 
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border-interactive);
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-interactive);
+  }
+
+  .card--featured:hover {
+    box-shadow: var(--shadow-lg);
+  }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card--media:hover {
     transform: translateY(-3px);
+  }
+}
+
+/* Container query — layout do card pelo espaço do grid, não só pelo viewport */
+@container destinos (min-width: 500px) {
+  .card--media:not(.card--featured) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .card--media:not(.card--featured) .card-media {
+    width: 42%;
+    max-width: 200px;
+    flex-shrink: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .card--media:not(.card--featured) .card-body {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@container destinos (min-width: 720px) {
+  .card--featured.card--media {
+    flex-direction: row;
+  }
+
+  .card--featured.card--media .card-media {
+    width: 50%;
+    max-width: none;
+    flex: 1;
   }
 }
 
@@ -845,8 +906,10 @@ textarea {
   text-decoration: none;
 }
 
-.card-link:hover {
-  text-decoration: underline;
+@media (hover: hover) {
+  .card-link:hover {
+    text-decoration: underline;
+  }
 }
 
 /* --- Card em destaque (Aula 09 — Passo 5) ---
@@ -876,11 +939,7 @@ textarea {
   box-shadow: var(--shadow-sm);
 }
 
-.card--featured:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-/* css/components/gastro.css */
+  /* css/components/gastro.css */
 .gastro-lead {
   max-width: 62ch;
   margin-inline: auto;
@@ -904,6 +963,8 @@ textarea {
 }
 
 .gastro-grid {
+  container-type: inline-size;
+  container-name: gastro;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.35rem;
@@ -920,9 +981,31 @@ textarea {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.gastro-card:hover {
-  border-color: var(--color-gastro-card-border-hover);
-  box-shadow: 0 12px 32px var(--color-gastro-shadow);
+@media (hover: hover) {
+  .gastro-card:hover {
+    border-color: var(--color-gastro-card-border-hover);
+    box-shadow: 0 12px 32px var(--color-gastro-shadow);
+  }
+}
+
+@container gastro (min-width: 420px) {
+  .gastro-card {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .gastro-card-media {
+    width: 38%;
+    max-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .gastro-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .gastro-card-media {
@@ -980,7 +1063,7 @@ textarea {
   font-weight: 500;
 }
 
-/* css/components/tabs.css */
+  /* css/components/tabs.css */
 .tabs {
   max-width: 640px;
   margin-inline: auto;
@@ -1025,10 +1108,6 @@ textarea {
   box-shadow: var(--shadow-sm);
 }
 
-.tab-panel[hidden] {
-  display: none !important;
-}
-
 .roteiro-list {
   margin: 0;
   padding-left: 1.25rem;
@@ -1043,7 +1122,7 @@ textarea {
   color: var(--color-text);
 }
 
-/* css/components/form.css */
+  /* css/components/form.css */
 .contact-form .field {
   margin-bottom: 1.35rem;
 }
@@ -1131,7 +1210,7 @@ textarea {
   color: var(--color-accent);
 }
 
-/* css/components/btn.css */
+  /* css/components/btn.css */
 /* Botão BEM (Aula 09 — Desafio Extra)
    Variantes: .btn--primary, .btn--outline, .btn--ghost
    Usa Custom Properties para cores e estado :focus-visible acessível.
@@ -1222,7 +1301,7 @@ textarea {
   width: 100%;
 }
 
-/* css/components/footer.css */
+  /* css/components/footer.css */
 .site-footer {
   background: var(--color-ink);
   color: var(--color-on-inverse-muted);
@@ -1325,7 +1404,7 @@ textarea {
   margin: 0;
 }
 
-/* css/utilities.css */
+  /* css/utilities.css */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1367,5 +1446,132 @@ textarea {
 
 .btn-block {
   width: 100%;
+}
+
+}
+
+@layer overrides {
+  /* css/overrides.css */
+/*
+  Aula 11 — camada overrides (maior precedência, sem !important).
+  Ajustes globais: foco por teclado, toque, overflow, projetor.
+*/
+
+/* Demanda 2 — navegação por Tab visível (teclado, não clique) */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-ui);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline-color: var(--color-action-primary);
+}
+
+body.using-keyboard :focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Itens críticos — área de toque mínima 44×44px */
+button,
+.btn,
+.nav-toggle,
+.tab-btn,
+.theme-toggle,
+.btn-back-top,
+.site-nav a,
+.card-link,
+.logo {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.site-nav a,
+.card-link,
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-link {
+  min-width: auto;
+  padding-inline: 0.25rem;
+  align-self: flex-start;
+}
+
+/* Nav CTA — estilos sem !important (precedência da camada overrides) */
+.site-nav .nav-cta {
+  background: var(--color-brand);
+  color: var(--color-on-action);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-ui);
+  border-bottom: none;
+}
+
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: var(--color-brand-hover);
+  color: var(--color-on-action);
+  border-bottom: none;
+}
+
+/* Item 01 — evitar scroll horizontal; investigar filhos com max-width */
+html {
+  overflow-x: clip;
+}
+
+/* Item 12 — inputs iOS (zoom automático abaixo de 16px) */
+input,
+select,
+textarea {
+  font-size: max(1rem, 16px);
+}
+
+/* Item 07 — linhas de leitura em desktop */
+@media (min-width: 1200px) {
+  .split-text p,
+  .gastro-intro p,
+  .section-head p {
+    max-width: 75ch;
+  }
+}
+
+/* Item 08 — conteúdo limitado em telas muito largas */
+@media (min-width: 1400px) {
+  .container {
+    width: min(1120px, 88vw);
+    max-width: 1120px;
+  }
+}
+
+/* Demanda 1 — legibilidade em projetor / TV (≥1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --fs-base: 1.125rem;
+    --fs-md: 1.125rem;
+    --fs-lead: 1.25rem;
+    --fs-section-title: clamp(1.85rem, 2vw, 2.25rem);
+    --fs-hero: clamp(2.25rem, 3vw, 3rem);
+    --fs-card-title: 1.25rem;
+    --fs-body-sm: 1.0625rem;
+    --fs-hint: 0.9375rem;
+  }
+}
+
+/* Abas: [hidden] sem !important */
+.tab-panel[hidden] {
+  display: none;
+}
+
 }
 

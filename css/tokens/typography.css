@@ -1,3 +1,8 @@
+/* Escala fluida na raiz — 1rem nos tokens acompanha o viewport (Aula 11) */
+html {
+  font-size: clamp(16px, 1.1vw, 20px);
+}
+
 :root {
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Fraunces", Georgia, serif;
@@ -12,7 +17,7 @@
   --line-height-relaxed: 1.65;
   --line-height-hero: 1.15;
 
-  --fs-base: clamp(0.875rem, 2vw, 1rem);
+  --fs-base: clamp(1rem, 1.5vw, 1.125rem);
   --fs-h1: clamp(1.75rem, 4vw, 2.5rem);
   --fs-h2: clamp(1.25rem, 3vw, 1.875rem);
   --fs-hero: clamp(2rem, 4.5vw, 2.75rem);

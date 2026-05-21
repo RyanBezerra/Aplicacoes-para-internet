@@ -1,4 +1,9 @@
-### Aplicações para Internet — Aula 10
+### Aplicações para Internet — Aula 11
+### Responsive Challenge: auditoria, @layer e container queries
+
+Esta entrega corresponde à **Aula 11**, com foco em **auditoria de responsividade**, **CSS Cascade Layers** (`@layer`), **Container Queries** (`@container`) e **restrições de mercado** (projetor e navegação por teclado). O projeto **mantém** as bases das **Aulas 08–10** (layout responsivo, JS, tokens ITCSS e bundle).
+
+### Aplicações para Internet — Aula 10 (referência)
 ### ITCSS + design tokens e CSS em produção (bundle)
 
 Esta entrega corresponde à **Aula 10**, com foco em **tokens de design**, **organização em camadas ITCSS** (arquivos modulares em `css/`) e **uma única folha de estilo em produção** (`css/site.bundle.css`, gerada por `scripts/build-css.ps1`). O projeto **mantém** o que foi consolidado na **Aula 08** (layout responsivo com Flexbox, Grid e media queries) e na **Aula 09** (**JavaScript** em `js/main.js`, **acessibilidade** com teclado e ARIA, componentes interativos e **feedback visual** no cabeçalho ao rolar a página).
@@ -14,7 +19,38 @@ Esta entrega corresponde à **Aula 10**, com foco em **tokens de design**, **org
 - **Carga horária**: 2 horas  
 - **Professor**: Jeofton Costa  
 
-### Conteúdo desta aula (Aula 10 — foco atual)
+### Conteúdo desta aula (Aula 11 — foco atual)
+- **Fase 1 — Auditoria:** checklist técnico de 12 itens com status OK/Falha e backlog (problema, causa, correção) em [`docs/aula11-responsive-audit.md`](docs/aula11-responsive-audit.md)
+- **Fase 2 — @layer (Caminho A):** `tokens → reset → base → layout → components → overrides` em `css/main.css` e em `css/site.bundle.css`; remoção de `!important` desnecessários (nav CTA, abas)
+- **Fase 2 — Container Queries (Caminho B):** `.cards-grid` (`container-name: destinos`) e `.gastro-grid` (`gastro`) — o card adapta `flex-direction` pelo espaço do pai, não só pela viewport
+- **Fase 2 — Itens críticos (Caminho C):** `overflow-x: clip`, área de toque 44px, inputs com `font-size` mínimo 16px, `.split` mobile-first, hovers em `@media (hover: hover)`
+- **Fase 3 — Carta do cliente:** legibilidade em projetor (≥1600px + `clamp` em `html`); navegação por Tab com `:focus-visible` e classe `.using-keyboard` em `js/main.js`
+- **Evidência comparativa:** screenshot antes/depois do card em [`imgs/aula11-card-comparativo.png`](imgs/aula11-card-comparativo.png); página auxiliar [`docs/comparativo-card-aula11.html`](docs/comparativo-card-aula11.html)
+
+### Alterações realizadas nesta versão (Aula 11)
+
+| Área | Arquivo(s) | O que mudou |
+|------|------------|-------------|
+| Cascade Layers | `css/main.css`, `scripts/build-css.ps1`, `css/site.bundle.css` | Declaração `@layer` e agrupamento dos módulos ITCSS por camada |
+| Overrides globais | `css/overrides.css` | Foco visível, toque mínimo, inputs iOS, projetor, `max-width` em telas largas |
+| Container queries | `css/layout.css`, `css/components/card.css`, `css/components/gastro.css` | `container-type` nos grids; `@container` para layout horizontal do card |
+| Layout mobile | `css/layout.css` | `.split` passa a 1 coluna no mobile e 2 colunas a partir de 769px |
+| Tipografia fluida | `css/tokens/typography.css` | `html { font-size: clamp(16px, 1.1vw, 20px) }` |
+| Hover em touch | `css/components/card.css`, `css/components/gastro.css` | Efeitos de hover apenas com `@media (hover: hover)` |
+| Nav sem `!important` | `css/components/nav.css` | Estilos do CTA delegados à camada `overrides` |
+| Teclado | `js/main.js` | Listeners `Tab` / `mousedown` para `.using-keyboard` |
+| Documentação | `docs/aula11-responsive-audit.md`, `docs/comparativo-card-aula11.html` | Checklist, backlog e captura comparativa |
+
+**Arquivos novos:** `css/overrides.css`, `docs/aula11-responsive-audit.md`, `docs/comparativo-card-aula11.html`, `imgs/aula11-card-comparativo.png`
+
+#### Como validar (Aula 11)
+
+1. Abra `index.html` no Live Server e use **Ctrl+Shift+M** (360px, 768px, 1200px, 1600px).
+2. Navegue com **Tab** pelo menu, abas, formulário e botões — o foco deve ficar visível.
+3. Na seção **Destinos**, redimensione a janela: em colunas largas o card passa a layout horizontal (`@container`).
+4. Após editar CSS: `.\scripts\build-css.ps1`
+
+### Conteúdo desta aula (Aula 10)
 - **Design tokens**: primitives, espaçamento, tipografia e tokens semânticos em `css/tokens/` (incluindo variáveis para **tema escuro** via `[data-theme="dark"]`)
 - **ITCSS modular**: `reset`, `base`, `layout`, `components` e `utilities` em arquivos separados, com ordem explícita em `css/main.css` (desenvolvimento)
 - **Build de CSS**: script **`scripts/build-css.ps1`** concatena os módulos e gera **`css/site.bundle.css`** (menos requisições no navegador)
@@ -222,25 +258,53 @@ Entregar o **link do repositório GitHub** com o commit contendo as mudanças e 
 <img width="675" height="1600" alt="image" src="https://github.com/user-attachments/assets/32dc6066-e439-4752-a170-1305de1c6898" />
 
 ### Evidências (screenshots)
-#### Mobile (< 480px)
+
+#### Aula 11 — Card responsivo (antes × depois)
+
+Comparativo do componente `.card--media` na seção Destinos: **antes** (Aula 10, coluna fixa) vs **depois** (Aula 11, `@container destinos` com imagem ao lado do texto quando o container ≥ 500px).
+
+![Card responsivo — comparativo Aula 11](imgs/aula11-card-comparativo.png)
+
+- **Imagem:** `imgs/aula11-card-comparativo.png`
+- **Página de captura:** abrir `docs/comparativo-card-aula11.html` no Live Server (viewport sugerido: 1280×760px)
+- **Detalhes técnicos:** [`docs/aula11-responsive-audit.md`](docs/aula11-responsive-audit.md) (seção “Evidência visual”)
+
+#### Aulas 08–10 — Layout nos breakpoints
+
+##### Mobile (< 480px)
 ![Layout mobile](imgs/mobile.png)
 
-#### Tablet (>= 768px)
+##### Tablet (>= 768px)
 ![Layout tablet](imgs/tablet.png)
 
-#### Desktop (>= 1024px)
+##### Desktop (>= 1024px)
 ![Layout desktop](imgs/laptop.png)
 
-### Checklist de entrega (auditoria)
+### Checklist de entrega (Aula 11)
 
-- **README (Aula 10)**: OK — identifica a **aula atual**, resume **tokens + ITCSS + bundle**, integração com o trabalho das **Aulas 08–09** (JS, ARIA, formulário, scroll no header, tema) e mantém o **brief** e o roteiro da Aula 08 como referência.
+| Critério | Status | Onde verificar |
+|----------|--------|----------------|
+| Checklist de 12 itens preenchido + problemas documentados | OK | [`docs/aula11-responsive-audit.md`](docs/aula11-responsive-audit.md) |
+| Melhoria arquitetural (`@layer` ou `@container`) | OK | `@layer` em `css/main.css`; `@container` em `card.css` e `gastro.css` |
+| Demanda do cliente (projetor e/ou Tab) com justificativa | OK | `css/overrides.css`, `js/main.js`; seção “Carta do cliente” no audit |
+| Screenshot comparativo antes/depois do componente | OK | [`imgs/aula11-card-comparativo.png`](imgs/aula11-card-comparativo.png) |
+
+**Itens críticos do checklist (01, 02, 03, 12):** todos OK após as correções — ver tabela completa no audit.
+
+**@media vs @container (resumo):** `@media` controla layout da página (grid de colunas, menu, projetor); `@container` faz o card reagir à largura da célula do grid, útil quando o mesmo componente aparece em contextos com larguras diferentes.
+
+### Checklist de entrega (Aulas anteriores — referência)
+
+- **README (Aula 11)**: OK — identifica a **aula atual**, resume auditoria, `@layer`, container queries, carta do cliente e evidência comparativa.
+- **README (Aula 10)**: OK — tokens + ITCSS + bundle; integração com Aulas 08–09.
 - **README (problema completo)**: OK — contém **contexto**, **público-alvo**, **dor** e **critério de sucesso**.
-- **Estrutura de pastas (ITCSS + tokens)**: OK — `css/tokens/` (primitives, spacing, typography, semantic), `css/reset.css`, `css/base.css`, `css/layout.css`, `css/components/`, `css/utilities.css`; ordem espelhada em `css/main.css` e em `scripts/build-css.ps1`.
+- **Estrutura de pastas (ITCSS + tokens + layers)**: OK — `css/tokens/`, `css/reset.css`, `css/base.css`, `css/layout.css`, `css/components/`, `css/utilities.css`, **`css/overrides.css`**; ordem e camadas `@layer` em `css/main.css` e `scripts/build-css.ps1`.
 - **Tokens (cores + tipografia + espaçamento)**: OK — definidos principalmente em `css/tokens/`; `css/variables.css` remete à migração para tokens.
 - **`reset.css`**: OK — `css/reset.css`, incluído no bundle.
 - **`index.html` (HTML semântico + performance)**: OK — `header`, `nav`, `main`, `section`, `footer`; carrega **`css/site.bundle.css`**; otimizações de fonte/imagem no `<head>`.
-- **`js/main.js`**: OK — menu, abas, formulário, tags dinâmicas, topo, **tema** (`data-theme` + `localStorage`) e estado `.header--scrolled` no scroll.
-- **`scripts/build-css.ps1`**: OK — gera `css/site.bundle.css` a partir dos módulos.
+- **`js/main.js`**: OK — menu, abas, formulário, tags, topo, tema, scroll no header e **indicador `.using-keyboard`** (Tab) na Aula 11.
+- **`scripts/build-css.ps1`**: OK — gera `css/site.bundle.css` com blocos `@layer` (Aula 11).
+- **Auditoria responsiva (Aula 11)**: OK — `docs/aula11-responsive-audit.md` + comparativo em `imgs/aula11-card-comparativo.png`.
 - **Contraste WCAG AA (texto/fundo)**: OK — verificação feita com script local (`scripts/contrast-check.js`).
 
 #### Regenerar o CSS após editar arquivos em `css/`
@@ -250,6 +314,8 @@ No PowerShell, na raiz do repositório:
 ```powershell
 .\scripts\build-css.ps1
 ```
+
+O bundle inclui `@layer` (Aula 11). Após alterar qualquer arquivo em `css/`, rode o script acima antes de validar no navegador.
 
 #### Contraste (WCAG 2.1 — AA)
 

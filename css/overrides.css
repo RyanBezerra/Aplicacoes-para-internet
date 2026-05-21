@@ -1,0 +1,120 @@
+/*
+  Aula 11 — camada overrides (maior precedência, sem !important).
+  Ajustes globais: foco por teclado, toque, overflow, projetor.
+*/
+
+/* Demanda 2 — navegação por Tab visível (teclado, não clique) */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-ui);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline-color: var(--color-action-primary);
+}
+
+body.using-keyboard :focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Itens críticos — área de toque mínima 44×44px */
+button,
+.btn,
+.nav-toggle,
+.tab-btn,
+.theme-toggle,
+.btn-back-top,
+.site-nav a,
+.card-link,
+.logo {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.site-nav a,
+.card-link,
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-link {
+  min-width: auto;
+  padding-inline: 0.25rem;
+  align-self: flex-start;
+}
+
+/* Nav CTA — estilos sem !important (precedência da camada overrides) */
+.site-nav .nav-cta {
+  background: var(--color-brand);
+  color: var(--color-on-action);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-ui);
+  border-bottom: none;
+}
+
+.site-nav .nav-cta:hover,
+.site-nav .nav-cta:focus-visible {
+  background: var(--color-brand-hover);
+  color: var(--color-on-action);
+  border-bottom: none;
+}
+
+/* Item 01 — evitar scroll horizontal; investigar filhos com max-width */
+html {
+  overflow-x: clip;
+}
+
+/* Item 12 — inputs iOS (zoom automático abaixo de 16px) */
+input,
+select,
+textarea {
+  font-size: max(1rem, 16px);
+}
+
+/* Item 07 — linhas de leitura em desktop */
+@media (min-width: 1200px) {
+  .split-text p,
+  .gastro-intro p,
+  .section-head p {
+    max-width: 75ch;
+  }
+}
+
+/* Item 08 — conteúdo limitado em telas muito largas */
+@media (min-width: 1400px) {
+  .container {
+    width: min(1120px, 88vw);
+    max-width: 1120px;
+  }
+}
+
+/* Demanda 1 — legibilidade em projetor / TV (≥1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --fs-base: 1.125rem;
+    --fs-md: 1.125rem;
+    --fs-lead: 1.25rem;
+    --fs-section-title: clamp(1.85rem, 2vw, 2.25rem);
+    --fs-hero: clamp(2.25rem, 3vw, 3rem);
+    --fs-card-title: 1.25rem;
+    --fs-body-sm: 1.0625rem;
+    --fs-hint: 0.9375rem;
+  }
+}
+
+/* Abas: [hidden] sem !important */
+.tab-panel[hidden] {
+  display: none;
+}

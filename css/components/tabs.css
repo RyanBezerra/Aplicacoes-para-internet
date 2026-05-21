@@ -42,10 +42,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-.tab-panel[hidden] {
-  display: none !important;
-}
-
 .roteiro-list {
   margin: 0;
   padding-left: 1.25rem;

@@ -95,16 +95,16 @@
 
 .site-nav .nav-cta {
   background: var(--color-brand);
-  color: var(--color-on-action) !important;
-  padding: 0.5rem 1rem !important;
+  color: var(--color-on-action);
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-ui);
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .site-nav .nav-cta:hover,
 .site-nav .nav-cta:focus-visible {
   background: var(--color-brand-hover);
-  color: var(--color-on-action) !important;
+  color: var(--color-on-action);
 }
 
 @media (max-width: 860px) {
