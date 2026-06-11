@@ -1,3 +1,8 @@
+/**
+ * Verificação de contraste WCAG 2.1 (nível AA)
+ * Uso: node scripts/contrast-check.js
+ * Compara pares texto/fundo do tema claro e escuro.
+ */
 function hexToRgb(hex) {
   const cleaned = hex.replace("#", "").trim();
   if (![3, 6].includes(cleaned.length)) {
@@ -43,16 +48,22 @@ function fmt(n) {
 }
 
 const combos = [
-  { name: "Texto padrão em fundo (body)", fg: "#1c1c1e", bg: "#f4f1eb" },
-  { name: "Texto em surface (cards/seções)", fg: "#1c1c1e", bg: "#ffffff" },
-  { name: "Texto muted em fundo (body)", fg: "#5c5c63", bg: "#f4f1eb" },
-  { name: "Texto ink em surface (destaques)", fg: "#0a1628", bg: "#ffffff" },
-  { name: "CTA primário (texto) em accent", fg: "#ffffff", bg: "#c73e2b" },
-  { name: "CTA primário hover (texto) em accent-hover", fg: "#ffffff", bg: "#a83222" },
-  { name: "Nav CTA (texto) em primary", fg: "#ffffff", bg: "#0d4f6c" },
-  { name: "Nav CTA hover (texto) em primary-hover", fg: "#ffffff", bg: "#0a3d54" },
-  { name: "Texto branco em ink (section-accent)", fg: "#ffffff", bg: "#0a1628" },
-  { name: "Texto branco 88% em ink (section-head-light)", fg: "#e0e0e0", bg: "#0a1628" },
+  { name: "Texto padrão em fundo (body)", fg: "#1c1c1e", bg: "#f4f1eb", theme: "claro" },
+  { name: "Texto em surface (cards/seções)", fg: "#1c1c1e", bg: "#ffffff", theme: "claro" },
+  { name: "Texto muted em fundo (body)", fg: "#5c5c63", bg: "#f4f1eb", theme: "claro" },
+  { name: "Texto ink em surface (destaques)", fg: "#0a1628", bg: "#ffffff", theme: "claro" },
+  { name: "CTA primário (texto) em accent", fg: "#ffffff", bg: "#c73e2b", theme: "claro" },
+  { name: "CTA primário hover (texto) em accent-hover", fg: "#ffffff", bg: "#a83222", theme: "claro" },
+  { name: "Nav CTA (texto) em primary", fg: "#ffffff", bg: "#0d4f6c", theme: "claro" },
+  { name: "Nav CTA hover (texto) em primary-hover", fg: "#ffffff", bg: "#0a3d54", theme: "claro" },
+  { name: "Texto branco em ink (section-accent)", fg: "#ffffff", bg: "#0a1628", theme: "claro" },
+  { name: "Texto branco 88% em ink (section-head-light)", fg: "#e0e0e0", bg: "#0a1628", theme: "claro" },
+  { name: "[dark] Texto em fundo", fg: "#f9fafb", bg: "#0f1419", theme: "escuro" },
+  { name: "[dark] Texto em surface", fg: "#f9fafb", bg: "#1a2230", theme: "escuro" },
+  { name: "[dark] Texto muted em fundo", fg: "#9ca3af", bg: "#0f1419", theme: "escuro" },
+  { name: "[dark] Texto muted em surface", fg: "#9ca3af", bg: "#1a2230", theme: "escuro" },
+  { name: "[dark] CTA primário (texto) em accent", fg: "#ffffff", bg: "#c73e2b", theme: "escuro" },
+  { name: "[dark] Nav CTA (texto) em brand", fg: "#ffffff", bg: "#0d4f6c", theme: "escuro" },
 ];
 
 const AA_NORMAL = 4.5;
@@ -65,8 +76,21 @@ const rows = combos.map((c) => {
   return { ...c, ratio, okNormal, okLarge };
 });
 
-console.log("WCAG 2.1 contraste (AA):");
-for (const r of rows) {
-  const status = r.okNormal ? "AA (normal)" : r.okLarge ? "AA (texto grande)" : "Falha";
-  console.log(`- ${r.name}: ${r.fg} / ${r.bg} -> ${fmt(r.ratio)} (${status})`);
+console.log("WCAG 2.1 contraste (AA):\n");
+
+const themes = ["claro", "escuro"];
+for (const theme of themes) {
+  console.log(`--- Tema ${theme} ---`);
+  for (const r of rows.filter((row) => row.theme === theme)) {
+    const status = r.okNormal ? "AA (normal)" : r.okLarge ? "AA (texto grande)" : "FALHA";
+    console.log(`- ${r.name}: ${r.fg} / ${r.bg} -> ${fmt(r.ratio)} (${status})`);
+  }
+  console.log("");
+}
+
+const failures = rows.filter((r) => !r.okNormal && !r.okLarge);
+if (failures.length === 0) {
+  console.log("Resultado: todas as combinações atendem WCAG AA.");
+} else {
+  console.log(`Atenção: ${failures.length} combinação(ões) abaixo de AA.`);
 }

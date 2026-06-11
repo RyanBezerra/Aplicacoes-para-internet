@@ -1,3 +1,4 @@
+/* Tokens de espaçamento — escala múltipla de 4px (1rem = 16px) */
 :root {
   /* Escala múltipla de 4px (16px = 1rem) */
   --space-0: 0;

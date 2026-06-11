@@ -1,5 +1,9 @@
+/*
+  Tokens primitivos — paleta bruta (cores hex, sombras, raios)
+  Regra: prefixo _ indica uso APENAS via tokens semânticos (semantic.css)
+  Componentes não devem referenciar --_ diretamente.
+*/
 :root {
-  /* Paleta bruta — prefixo _ = consumo apenas via tokens semânticos */
 
   --_white: #ffffff;
   --_neutral-50: #f9fafb;
@@ -11,6 +15,7 @@
   --_ink-950: #0a1628;
   --_ink-900: #030712;
 
+  --_gray-400: #9ca3af;
   --_gray-700: #374151;
   --_gray-800: #1f2937;
   --_gray-850: #1a2230;

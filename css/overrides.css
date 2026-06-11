@@ -1,6 +1,6 @@
 /*
-  Aula 11 — camada overrides (maior precedência, sem !important).
-  Ajustes globais: foco por teclado, toque, overflow, projetor.
+  Overrides — camada de maior precedência (sem !important)
+  Ajustes globais de acessibilidade, toque, overflow e contextos especiais (projetor)
 */
 
 /* Demanda 2 — navegação por Tab visível (teclado, não clique) */
@@ -34,19 +34,44 @@ button,
 .tab-btn,
 .theme-toggle,
 .btn-back-top,
-.site-nav a,
+.header-cta,
+.nav-cta-mobile,
 .card-link,
 .logo {
   min-height: 44px;
   min-width: 44px;
 }
 
-.site-nav a,
+.site-nav a {
+  min-height: 44px;
+}
+
+@media (min-width: 861px) {
+  .site-nav a {
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 .card-link,
 .logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 861px) {
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 860px) {
+  .header-cta {
+    display: none;
+  }
 }
 
 .card-link {
@@ -55,20 +80,34 @@ button,
   align-self: flex-start;
 }
 
-/* Nav CTA — estilos sem !important (precedência da camada overrides) */
-.site-nav .nav-cta {
+/* CTA do header — desktop (barra) e mobile (dentro do menu) */
+.header-cta,
+.nav-cta-mobile {
   background: var(--color-brand);
   color: var(--color-on-action);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-ui);
-  border-bottom: none;
+  border-color: var(--color-brand);
 }
 
-.site-nav .nav-cta:hover,
-.site-nav .nav-cta:focus-visible {
+@media (hover: hover) {
+  .header-cta:hover,
+  .nav-cta-mobile:hover {
+    background: var(--color-brand-hover);
+    border-color: var(--color-brand-hover);
+    color: var(--color-on-action);
+  }
+}
+
+.header-cta:focus-visible,
+.nav-cta-mobile:focus-visible {
   background: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
   color: var(--color-on-action);
-  border-bottom: none;
+}
+
+@media (min-width: 861px) {
+  .nav-cta-item {
+    display: none;
+  }
 }
 
 /* Item 01 — evitar scroll horizontal; investigar filhos com max-width */

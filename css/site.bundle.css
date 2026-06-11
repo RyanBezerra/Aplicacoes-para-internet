@@ -3,8 +3,12 @@
 
 @layer tokens {
   /* css/tokens/primitives.css */
+/*
+  Tokens primitivos — paleta bruta (cores hex, sombras, raios)
+  Regra: prefixo _ indica uso APENAS via tokens semânticos (semantic.css)
+  Componentes não devem referenciar --_ diretamente.
+*/
 :root {
-  /* Paleta bruta — prefixo _ = consumo apenas via tokens semânticos */
 
   --_white: #ffffff;
   --_neutral-50: #f9fafb;
@@ -16,6 +20,7 @@
   --_ink-950: #0a1628;
   --_ink-900: #030712;
 
+  --_gray-400: #9ca3af;
   --_gray-700: #374151;
   --_gray-800: #1f2937;
   --_gray-850: #1a2230;
@@ -55,6 +60,7 @@
 }
 
   /* css/tokens/spacing.css */
+/* Tokens de espaçamento — escala múltipla de 4px (1rem = 16px) */
 :root {
   /* Escala múltipla de 4px (16px = 1rem) */
   --space-0: 0;
@@ -79,6 +85,10 @@
 }
 
   /* css/tokens/typography.css */
+/*
+  Tipografia — fontes, pesos, line-heights e tamanhos fluidos (clamp)
+  html { font-size } escala 1rem conforme a largura da viewport
+*/
 /* Escala fluida na raiz — 1rem nos tokens acompanha o viewport (Aula 11) */
 html {
   font-size: clamp(16px, 1.1vw, 20px);
@@ -116,8 +126,12 @@ html {
 }
 
   /* css/tokens/semantic.css */
+/*
+  Tokens semânticos — cores e efeitos com significado de UI
+  Consumidos pelos componentes (--color-brand, --color-text, etc.)
+  Tema escuro: sobrescreve variáveis via [data-theme="dark"]
+*/
 :root {
-  /* Checkpoint Aula 10: alterar --color-action-primary atualiza CTAs (.btn-primary, .btn--primary). */
   --color-bg: var(--_neutral-100);
   --color-surface: var(--_white);
   --color-text: var(--_neutral-900);
@@ -130,7 +144,7 @@ html {
   --color-brand: var(--_teal-700);
   --color-brand-hover: var(--_teal-800);
 
-  /* Ação primária (CTAs principais: botões .btn-primary, envio de formulário) */
+  /* Ação primária (CTAs principais: botões .btn--primary, envio de formulário) */
   --color-action-primary: var(--_accent-500);
   --color-action-primary-hover: var(--_accent-600);
 
@@ -166,6 +180,7 @@ html {
   --color-border-interactive: rgba(var(--_rgb-teal-700), 0.35);
   --color-focus-shadow: rgba(var(--_rgb-teal-700), 0.22);
   --color-btn-focus-glow: rgba(var(--_rgb-blue-500), 0.25);
+  --color-btn-ghost-hover-bg: rgba(var(--_rgb-blue-500), 0.12);
 
   --gradient-hero: linear-gradient(
     125deg,
@@ -203,11 +218,12 @@ html {
   --color-text-shadow-hero: rgba(0, 0, 0, 0.2);
 }
 
+/* Sobrescreve tokens do tema claro quando data-theme="dark" no <html> */
 [data-theme="dark"] {
   --color-bg: var(--_gray-950);
   --color-surface: var(--_gray-850);
   --color-text: var(--_neutral-50);
-  --color-muted: #9ca3af;
+  --color-muted: var(--_gray-400);
   --color-border: var(--_gray-700);
   --color-hero-side: var(--_gray-800);
 
@@ -233,6 +249,8 @@ html {
 
 @layer reset {
   /* css/reset.css */
+/* Reset global — box-sizing, scroll suave, mídias fluidas e reduced-motion */
+
 *,
 *::before,
 *::after {
@@ -256,7 +274,7 @@ html {
   }
 }
 
-/* Reset de mídias responsivas */
+/* Imagens e vídeos nunca ultrapassam o container pai */
 img,
 video,
 iframe {
@@ -269,6 +287,8 @@ iframe {
 
 @layer base {
   /* css/base.css */
+/* Estilos base do documento (tipografia, skip link, inputs) */
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -294,6 +314,7 @@ textarea {
   box-sizing: border-box;
 }
 
+/* Skip link: visível apenas ao receber foco (teclado) */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -315,6 +336,12 @@ textarea {
 
 @layer layout {
   /* css/layout.css */
+/*
+  Layout global — containers, seções e grids de página
+  Breakpoints principais: 768px (tablet), 1200px (desktop cards)
+*/
+
+/* Largura máxima centralizada em todas as seções */
 .container {
   width: min(1120px, 92vw);
   margin-inline: auto;
@@ -370,13 +397,21 @@ textarea {
   color: var(--color-on-inverse);
 }
 
-/* Grids — container query no card (Aula 11, Caminho B) */
+/* Grids — container query por célula do card (Aula 11, Caminho B) */
 .cards-grid {
-  container-type: inline-size;
-  container-name: destinos;
   display: grid;
   grid-template-columns: 1fr; /* mobile-first: 1 coluna */
   gap: 1.35rem;
+}
+
+.cards-grid > .card-slot {
+  container-type: inline-size;
+  container-name: destinos;
+  min-width: 0;
+}
+
+.cards-grid > .card-slot > .card {
+  height: 100%;
 }
 
 /* Tablet ≈ 768px — 2 colunas */
@@ -392,7 +427,7 @@ textarea {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .cards-grid .card--featured {
+  .cards-grid > .card-slot:has(.card--featured) {
     grid-column: span 2;
   }
 }
@@ -481,31 +516,42 @@ textarea {
 
 @layer components {
   /* css/components/nav.css */
+/* Componente: Cabeçalho / navegação sticky
+   Bloco: .site-header | Elementos: .header-inner, .header-actions, .header-cta, .logo, .theme-toggle, .site-nav, .nav-toggle
+   Modificadores: .site-header.header--scrolled, .site-nav.is-open
+   Estados: :hover, :focus-visible; scroll (.header--scrolled) e menu (.is-open) via JS
+   Tokens: --color-surface, --color-brand, --header-h, --color-header-scrolled-bg
+*/
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  min-height: var(--header-h);
 }
 
+/* --- Logo (coluna esquerda no desktop) --- */
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-block: 1rem;
+  gap: var(--space-4);
+  min-height: var(--header-h);
+  padding-block: var(--space-2);
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: var(--space-2);
   text-decoration: none;
   color: var(--color-text);
   font-weight: 700;
   font-size: 1.125rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  max-width: 12rem;
 }
 
 .logo-mark {
@@ -514,6 +560,7 @@ textarea {
   background: var(--color-brand);
   border-radius: var(--radius-ui);
   position: relative;
+  flex-shrink: 0;
 }
 
 .logo-mark::after {
@@ -528,71 +575,243 @@ textarea {
 .logo-text {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-ui);
-  background: var(--color-surface);
-  cursor: pointer;
-}
-
-.nav-toggle-bar {
-  display: block;
-  width: 20px;
-  height: 2px;
-  margin-inline: auto;
-  background: var(--color-text);
+/* --- Navegação central (coluna do meio; overflow:hidden evita sobrepor o logo) --- */
+.site-nav {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .site-nav .nav-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 0.25rem 1.25rem;
+  justify-content: flex-end;
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
-  padding: 0.35rem 0;
-  border-bottom: 2px solid transparent;
-}
-
-.site-nav a:hover,
-.site-nav a:focus-visible {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
-}
-
-.site-nav .nav-cta {
-  background: var(--color-brand);
-  color: var(--color-on-action);
-  padding: 0.5rem 1rem;
+  font-size: var(--fs-sm);
+  line-height: 1.2;
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-ui);
-  border-bottom: none;
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.site-nav .nav-cta:hover,
-.site-nav .nav-cta:focus-visible {
+@media (hover: hover) {
+  .site-nav a:hover {
+    color: var(--color-brand);
+    background: color-mix(in srgb, var(--color-brand) 8%, transparent);
+  }
+}
+
+.site-nav a:focus-visible {
+  color: var(--color-brand);
+  background: color-mix(in srgb, var(--color-brand) 8%, transparent);
+}
+
+/* --- Ações à direita: CTA desktop, tema e hambúrguer --- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.header-cta {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--color-on-action);
+  background: var(--color-brand);
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-ui);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+@media (hover: hover) {
+  .header-cta:hover {
+    background: var(--color-brand-hover);
+    border-color: var(--color-brand-hover);
+    color: var(--color-on-action);
+  }
+}
+
+.header-cta:focus-visible {
   background: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
   color: var(--color-on-action);
 }
 
+.theme-toggle,
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-ui);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover,
+  .nav-toggle:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+}
+
+.theme-toggle[aria-pressed="true"] {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-on-action);
+}
+
+.theme-toggle__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Desktop — colunas fixas: logo | nav | ações (sem sobreposição) */
+@media (min-width: 861px) {
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: clamp(var(--space-3), 2vw, var(--space-6));
+  }
+
+  .logo {
+    grid-column: 1;
+    max-width: none;
+  }
+
+  .site-nav {
+    grid-column: 2;
+    padding-inline: var(--space-2);
+  }
+
+  .header-actions {
+    grid-column: 3;
+  }
+
+  .header-cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1023px) {
+  .logo-text {
+    max-width: 7.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .site-nav a {
+    padding-inline: var(--space-2);
+    font-size: var(--fs-sm);
+  }
+
+  .header-cta {
+    padding: 0.5rem 0.75rem;
+    font-size: var(--fs-sm);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-nav a {
+    font-size: var(--fs-md);
+    padding-inline: var(--space-4);
+  }
+
+  .header-cta {
+    padding: 0.6rem 1.15rem;
+    font-size: var(--fs-md);
+  }
+}
+
+/* Mobile — menu expansível */
 @media (max-width: 860px) {
-  .nav-toggle {
-    display: flex;
+  .header-inner {
+    gap: var(--space-3);
+  }
+
+  .logo {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .logo-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .site-nav {
@@ -600,10 +819,11 @@ textarea {
     left: 0;
     right: 0;
     top: 100%;
+    flex: none;
     background: var(--color-surface);
     border-bottom: 1px solid var(--color-border);
-    padding: 1rem;
-    box-shadow: var(--shadow-sm);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-md);
     display: none;
   }
 
@@ -617,32 +837,48 @@ textarea {
     gap: 0;
   }
 
-  .site-nav li {
+  .site-nav li:not(.nav-cta-item) {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .site-nav li:last-child {
+  .site-nav a:not(.nav-cta-mobile) {
+    display: flex;
+    width: 100%;
+    padding: var(--space-3) var(--space-2);
+    font-size: var(--fs-md);
+    border-radius: 0;
+  }
+
+  .nav-cta-item {
     border-bottom: none;
-    padding-top: 0.75rem;
+    padding-top: var(--space-2);
   }
 
-  .site-nav a {
-    display: block;
-    padding: 0.75rem 0;
+  .site-nav .nav-cta-mobile {
+    display: flex;
+    width: 100%;
+    margin-top: var(--space-1);
+    padding: var(--space-3) var(--space-4);
+    justify-content: center;
+    font-size: var(--fs-md);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-ui);
+    text-decoration: none;
   }
 
-  .site-nav .nav-cta {
-    text-align: center;
+  .nav-toggle {
+    display: flex;
   }
 }
 
   /* css/components/navbar.css */
-/* Navbar — extensões da Aula 09 (Desafio Extra)
-   - Estado .header--scrolled aplicado via JS ao rolar > 80px
-   - Reduz o padding e aumenta a sombra para dar sensação de "fixar"
-   - Mantém compatibilidade com o .site-header já existente em nav.css
+/* Componente: Cabeçalho — estado ao rolar
+   Bloco: .site-header | Modificador: .header--scrolled
+   Estados: transição de sombra/padding ao passar de 80px (JS + requestAnimationFrame)
+   Tokens: --color-header-scrolled-shadow, --color-header-scrolled-bg
 */
 
+/* Transição suave ao entrar no estado .header--scrolled */
 .site-header {
   transition: box-shadow 0.25s ease, padding 0.25s ease,
     background-color 0.25s ease;
@@ -678,6 +914,13 @@ textarea {
 }
 
   /* css/components/hero.css */
+/* Componente: Hero (banner principal)
+   Bloco: .hero | Modificadores: .hero--media
+   Elementos: .hero-grid, .hero-copy, .hero-panel, .hero-stat, .hero-actions, .hero-overlay
+   Estados: layout responsivo em @media (max-width: 768px)
+   Tokens: --color-brand, --gradient-hero, --hero-image, --fs-hero, --color-on-inverse
+*/
+
 .hero {
   padding: clamp(2.5rem, 6vw, 4.5rem) 0;
   background: var(--color-brand);
@@ -793,6 +1036,14 @@ textarea {
 }
 
   /* css/components/card.css */
+/* Componente: Card de destino
+   Bloco: .card | Modificadores: .card--media, .card--featured
+   Elementos: .card-media, .card-body, .card-link
+   Container: .card-slot (container-name: destinos) — query pela largura da célula do grid
+   Estados: :hover (hover: hover); layout via @container destinos
+   Tokens: --color-surface, --color-border, --shadow-md, --radius-lg, --color-brand
+*/
+
 .card {
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -807,6 +1058,7 @@ textarea {
 
 .card--media {
   padding: 0;
+  min-width: 0;
 }
 
 @media (hover: hover) {
@@ -826,7 +1078,7 @@ textarea {
   }
 }
 
-/* Container query — layout do card pelo espaço do grid, não só pelo viewport */
+/* Container query: layout horizontal quando a CÉLULA (.card-slot) ≥ 500px */
 @container destinos (min-width: 500px) {
   .card--media:not(.card--featured) {
     flex-direction: row;
@@ -835,14 +1087,16 @@ textarea {
 
   .card--media:not(.card--featured) .card-media {
     width: 42%;
-    max-width: 200px;
+    max-width: 11rem;
     flex-shrink: 0;
     aspect-ratio: 16 / 10;
+    min-width: 0;
   }
 
   .card--media:not(.card--featured) .card-body {
     flex: 1;
     justify-content: center;
+    min-width: 0;
   }
 }
 
@@ -855,6 +1109,11 @@ textarea {
     width: 50%;
     max-width: none;
     flex: 1;
+    min-width: 0;
+  }
+
+  .card--featured.card--media .card-body {
+    min-width: 0;
   }
 }
 
@@ -912,10 +1171,7 @@ textarea {
   }
 }
 
-/* --- Card em destaque (Aula 09 — Passo 5) ---
-   Ocupa 2 colunas no desktop (regra de grid em layout.css) e
-   recebe um leve realce visual.
-*/
+/* Card em destaque — ocupa 2 colunas no grid (regra em layout.css) */
 .card--featured {
   border-color: var(--color-highlight);
   box-shadow: var(--shadow-md);
@@ -940,6 +1196,13 @@ textarea {
 }
 
   /* css/components/gastro.css */
+/* Componente: Gastronomia
+   Bloco: .gastro-card | Elementos: .gastro-card-media, .gastro-card-body, .tag-pill
+   Container: .gastro-grid (container-name: gastro)
+   Estados: :hover (hover: hover); layout via @container gastro
+   Tokens: --color-gastro-card-bg, --color-on-inverse, --color-gastro-body-muted
+*/
+
 .gastro-lead {
   max-width: 62ch;
   margin-inline: auto;
@@ -1064,6 +1327,13 @@ textarea {
 }
 
   /* css/components/tabs.css */
+/* Componente: Abas de roteiros
+   Bloco: .tabs | Elementos: .tabs-list, .tab-btn, .tab-panel, .roteiro-list
+   Modificadores: .tab-btn.is-active, .tab-panel.is-active
+   Estados: :hover (hover: hover), .is-active; teclado via JS (aria-selected, hidden)
+   Tokens: --color-brand, --color-surface, --color-border, --color-primary
+*/
+
 .tabs {
   max-width: 640px;
   margin-inline: auto;
@@ -1089,9 +1359,11 @@ textarea {
   color: var(--color-text);
 }
 
-.tab-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+@media (hover: hover) {
+  .tab-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 }
 
 .tab-btn.is-active {
@@ -1123,6 +1395,12 @@ textarea {
 }
 
   /* css/components/form.css */
+/* Componente: Formulário de contato
+   Bloco: .contact-form | Elementos: .field, .field-hint, .form-feedback
+   Estados: :hover, :focus-visible nos campos; .form-feedback.is-success | .is-error (JS)
+   Tokens: --color-border, --color-focus-shadow, --radius-input, --color-success
+*/
+
 .contact-form .field {
   margin-bottom: 1.35rem;
 }
@@ -1189,7 +1467,7 @@ textarea {
   box-shadow: 0 0 0 3px var(--color-focus-shadow);
 }
 
-.contact-form .btn-primary.btn-block {
+.contact-form .btn--primary.btn--block {
   padding-block: 0.85rem;
   border-radius: var(--radius-input);
   font-size: 1.02rem;
@@ -1211,9 +1489,11 @@ textarea {
 }
 
   /* css/components/btn.css */
-/* Botão BEM (Aula 09 — Desafio Extra)
-   Variantes: .btn--primary, .btn--outline, .btn--ghost
-   Usa Custom Properties para cores e estado :focus-visible acessível.
+/* Componente: Botão (BEM)
+   Bloco: .btn
+   Modificadores: .btn--primary | .btn--outline | .btn--inverse | .btn--ghost | .btn--block
+   Estados: :hover (hover: hover), :active, :focus-visible, :disabled, [aria-disabled="true"]
+   Tokens: --color-action-primary, --color-on-action, --color-highlight, --color-btn-focus-glow
 */
 
 .btn {
@@ -1229,7 +1509,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  padding: 0.65rem 1.25rem;
+  padding: var(--space-3) var(--space-5);
   font-family: inherit;
   font-size: var(--fs-md);
   font-weight: var(--font-weight-semibold);
@@ -1244,10 +1524,12 @@ textarea {
     border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.btn:hover {
-  background: var(--btn-bg-hover);
-  color: var(--btn-fg-hover);
-  border-color: var(--btn-border-hover);
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--btn-bg-hover);
+    color: var(--btn-fg-hover);
+    border-color: var(--btn-border-hover);
+  }
 }
 
 .btn:active {
@@ -1266,7 +1548,6 @@ textarea {
   cursor: not-allowed;
 }
 
-/* --- Variante primária --- */
 .btn--primary {
   --btn-bg: var(--color-action-primary);
   --btn-fg: var(--color-on-action);
@@ -1277,7 +1558,6 @@ textarea {
   box-shadow: var(--shadow-sm);
 }
 
-/* --- Variante outline --- */
 .btn--outline {
   --btn-bg: transparent;
   --btn-fg: var(--color-highlight);
@@ -1287,12 +1567,20 @@ textarea {
   --btn-border-hover: var(--color-highlight);
 }
 
-/* --- Variante ghost (sem borda nem fundo) --- */
+.btn--inverse {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-on-inverse);
+  --btn-border: var(--color-on-inverse-faint);
+  --btn-bg-hover: var(--color-on-inverse-ghost-hover);
+  --btn-fg-hover: var(--color-on-inverse);
+  --btn-border-hover: var(--color-on-inverse);
+}
+
 .btn--ghost {
   --btn-bg: transparent;
   --btn-fg: var(--color-highlight);
   --btn-border: transparent;
-  --btn-bg-hover: rgba(var(--_rgb-blue-500), 0.12);
+  --btn-bg-hover: var(--color-btn-ghost-hover-bg);
   --btn-fg-hover: var(--color-brand-hover);
   --btn-border-hover: transparent;
 }
@@ -1302,6 +1590,12 @@ textarea {
 }
 
   /* css/components/footer.css */
+/* Componente: Rodapé
+   Bloco: .site-footer | Elementos: .footer-grid, .footer-links, .btn-back-top
+   Estados: :hover nos links
+   Tokens: --color-ink, --color-on-inverse, --color-on-inverse-border
+*/
+
 .site-footer {
   background: var(--color-ink);
   color: var(--color-on-inverse-muted);
@@ -1347,8 +1641,10 @@ textarea {
   font-weight: 500;
 }
 
-.footer-links a:hover {
-  text-decoration: underline;
+@media (hover: hover) {
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
 }
 
 .btn-back-top {
@@ -1363,8 +1659,10 @@ textarea {
   cursor: pointer;
 }
 
-.btn-back-top:hover {
-  background: var(--color-on-inverse-hover-fill);
+@media (hover: hover) {
+  .btn-back-top:hover {
+    background: var(--color-on-inverse-hover-fill);
+  }
 }
 
 .footer-bottom {
@@ -1372,32 +1670,6 @@ textarea {
   text-align: center;
   font-size: var(--fs-xs);
   opacity: 0.65;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-}
-
-.theme-toggle {
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  font-weight: var(--font-weight-semibold);
-  padding: 0.45rem 0.9rem;
-  border-radius: var(--radius-ui);
-  border: 2px solid var(--color-on-inverse-border);
-  background: transparent;
-  color: var(--color-on-inverse);
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  background: var(--color-on-inverse-hover-fill);
-}
-
-.theme-toggle[aria-pressed="true"] {
-  background: var(--color-on-inverse-ghost-hover);
-  border-color: var(--color-on-inverse);
 }
 
 .footer-bottom p {
@@ -1405,56 +1677,15 @@ textarea {
 }
 
   /* css/utilities.css */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 1.25rem;
-  font-family: inherit;
-  font-size: var(--fs-md);
-  font-weight: var(--font-weight-semibold);
-  border-radius: var(--radius-ui);
-  border: 2px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.btn-primary {
-  background: var(--color-action-primary);
-  color: var(--color-on-action);
-  border-color: var(--color-action-primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-  background: var(--color-action-primary-hover);
-  border-color: var(--color-action-primary-hover);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--color-on-inverse);
-  border-color: var(--color-on-inverse-faint);
-}
-
-.btn-secondary:hover {
-  background: var(--color-on-inverse-ghost-hover);
-  border-color: var(--color-on-inverse);
-}
-
-.btn-block {
-  width: 100%;
-}
+/* Utilitários — botões centralizados em css/components/btn.css (padrão BEM) */
 
 }
 
 @layer overrides {
   /* css/overrides.css */
 /*
-  Aula 11 — camada overrides (maior precedência, sem !important).
-  Ajustes globais: foco por teclado, toque, overflow, projetor.
+  Overrides — camada de maior precedência (sem !important)
+  Ajustes globais de acessibilidade, toque, overflow e contextos especiais (projetor)
 */
 
 /* Demanda 2 — navegação por Tab visível (teclado, não clique) */
@@ -1488,19 +1719,44 @@ button,
 .tab-btn,
 .theme-toggle,
 .btn-back-top,
-.site-nav a,
+.header-cta,
+.nav-cta-mobile,
 .card-link,
 .logo {
   min-height: 44px;
   min-width: 44px;
 }
 
-.site-nav a,
+.site-nav a {
+  min-height: 44px;
+}
+
+@media (min-width: 861px) {
+  .site-nav a {
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 .card-link,
 .logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 861px) {
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 860px) {
+  .header-cta {
+    display: none;
+  }
 }
 
 .card-link {
@@ -1509,20 +1765,34 @@ button,
   align-self: flex-start;
 }
 
-/* Nav CTA — estilos sem !important (precedência da camada overrides) */
-.site-nav .nav-cta {
+/* CTA do header — desktop (barra) e mobile (dentro do menu) */
+.header-cta,
+.nav-cta-mobile {
   background: var(--color-brand);
   color: var(--color-on-action);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-ui);
-  border-bottom: none;
+  border-color: var(--color-brand);
 }
 
-.site-nav .nav-cta:hover,
-.site-nav .nav-cta:focus-visible {
+@media (hover: hover) {
+  .header-cta:hover,
+  .nav-cta-mobile:hover {
+    background: var(--color-brand-hover);
+    border-color: var(--color-brand-hover);
+    color: var(--color-on-action);
+  }
+}
+
+.header-cta:focus-visible,
+.nav-cta-mobile:focus-visible {
   background: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
   color: var(--color-on-action);
-  border-bottom: none;
+}
+
+@media (min-width: 861px) {
+  .nav-cta-item {
+    display: none;
+  }
 }
 
 /* Item 01 — evitar scroll horizontal; investigar filhos com max-width */

@@ -1,3 +1,10 @@
+/* Componente: Abas de roteiros
+   Bloco: .tabs | Elementos: .tabs-list, .tab-btn, .tab-panel, .roteiro-list
+   Modificadores: .tab-btn.is-active, .tab-panel.is-active
+   Estados: :hover (hover: hover), .is-active; teclado via JS (aria-selected, hidden)
+   Tokens: --color-brand, --color-surface, --color-border, --color-primary
+*/
+
 .tabs {
   max-width: 640px;
   margin-inline: auto;
@@ -23,9 +30,11 @@
   color: var(--color-text);
 }
 
-.tab-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+@media (hover: hover) {
+  .tab-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 }
 
 .tab-btn.is-active {

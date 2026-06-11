@@ -1,6 +1,10 @@
 /*
-  ITCSS + Design Tokens (Aula 10) + Cascade Layers (Aula 11).
-  Desenvolvimento: href="css/main.css". Produção: scripts/build-css.ps1 → site.bundle.css
+  ITCSS + Design Tokens + Cascade Layers (@layer)
+  ───────────────────────────────────────────────
+  Ordem das camadas (menor → maior precedência):
+    tokens → reset → base → layout → components → overrides
+  Desenvolvimento: linkar css/main.css
+  Produção: rodar scripts/build-css.ps1 → gera css/site.bundle.css
 */
 
 @layer tokens, reset, base, layout, components, overrides;

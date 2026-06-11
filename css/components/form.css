@@ -1,3 +1,9 @@
+/* Componente: Formulário de contato
+   Bloco: .contact-form | Elementos: .field, .field-hint, .form-feedback
+   Estados: :hover, :focus-visible nos campos; .form-feedback.is-success | .is-error (JS)
+   Tokens: --color-border, --color-focus-shadow, --radius-input, --color-success
+*/
+
 .contact-form .field {
   margin-bottom: 1.35rem;
 }
@@ -64,7 +70,7 @@
   box-shadow: 0 0 0 3px var(--color-focus-shadow);
 }
 
-.contact-form .btn-primary.btn-block {
+.contact-form .btn--primary.btn--block {
   padding-block: 0.85rem;
   border-radius: var(--radius-input);
   font-size: 1.02rem;

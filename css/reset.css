@@ -1,3 +1,5 @@
+/* Reset global — box-sizing, scroll suave, mídias fluidas e reduced-motion */
+
 *,
 *::before,
 *::after {
@@ -21,7 +23,7 @@ html {
   }
 }
 
-/* Reset de mídias responsivas */
+/* Imagens e vídeos nunca ultrapassam o container pai */
 img,
 video,
 iframe {

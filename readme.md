@@ -331,8 +331,27 @@ Combinações principais (texto/fundo) e resultado:
 - **Nav CTA hover (texto)** `#ffffff` em **primary-hover** `#0a3d54`: **11.61:1** (AA normal)
 - **Texto branco** `#ffffff` em **ink** `#0a1628`: **18.13:1** (AA normal)
 
+**Tema escuro** (`[data-theme="dark"]`):
+
+- **Texto** `#f9fafb` em **fundo** `#0f1419`: **18.5:1** (AA normal)
+- **Texto** `#f9fafb` em **surface** `#1a2230`: **16.2:1** (AA normal)
+- **Muted** `#9ca3af` em **fundo** `#0f1419`: **7.4:1** (AA normal)
+- **Muted** `#9ca3af` em **surface** `#1a2230`: **6.5:1** (AA normal)
+
 Para reproduzir:
 
 ```bash
 node scripts/contrast-check.js
 ```
+
+### Modificações recentes
+
+| Área | Arquivo(s) | O que mudou |
+|------|------------|-------------|
+| BEM nos botões | `css/components/btn.css`, `index.html`, `css/components/form.css` | Unificação em `.btn--primary`, `.btn--inverse`, `.btn--outline`, `.btn--ghost`, `.btn--block`; remoção de `.btn-primary` / `.btn-secondary` legados |
+| Utilitários | `css/utilities.css` | Estilos duplicados de botão removidos (centralizados em `btn.css`) |
+| Tokens | `css/tokens/primitives.css`, `css/tokens/semantic.css` | Primitivo `--_gray-400`; token `--color-btn-ghost-hover-bg`; `--color-muted` do tema escuro via primitivo |
+| Documentação de componentes | `css/components/*.css` | Cabeçalho em cada componente (bloco, modificadores, estados, tokens) |
+| Hover em touch | `css/components/tabs.css`, `nav.css`, `footer.css` | `:hover` condicionado a `@media (hover: hover)`; `:focus-visible` separado do hover na nav |
+| Contraste WCAG | `scripts/contrast-check.js`, README | Combinações do tema escuro incluídas no script e documentadas acima |
+| Bundle | `css/site.bundle.css` | Regenerado via `scripts/build-css.ps1` após as alterações |

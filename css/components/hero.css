@@ -1,3 +1,10 @@
+/* Componente: Hero (banner principal)
+   Bloco: .hero | Modificadores: .hero--media
+   Elementos: .hero-grid, .hero-copy, .hero-panel, .hero-stat, .hero-actions, .hero-overlay
+   Estados: layout responsivo em @media (max-width: 768px)
+   Tokens: --color-brand, --gradient-hero, --hero-image, --fs-hero, --color-on-inverse
+*/
+
 .hero {
   padding: clamp(2.5rem, 6vw, 4.5rem) 0;
   background: var(--color-brand);

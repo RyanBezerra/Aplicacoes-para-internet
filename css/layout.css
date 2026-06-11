@@ -1,3 +1,9 @@
+/*
+  Layout global — containers, seções e grids de página
+  Breakpoints principais: 768px (tablet), 1200px (desktop cards)
+*/
+
+/* Largura máxima centralizada em todas as seções */
 .container {
   width: min(1120px, 92vw);
   margin-inline: auto;
@@ -53,13 +59,21 @@
   color: var(--color-on-inverse);
 }
 
-/* Grids — container query no card (Aula 11, Caminho B) */
+/* Grids — container query por célula do card (Aula 11, Caminho B) */
 .cards-grid {
-  container-type: inline-size;
-  container-name: destinos;
   display: grid;
   grid-template-columns: 1fr; /* mobile-first: 1 coluna */
   gap: 1.35rem;
+}
+
+.cards-grid > .card-slot {
+  container-type: inline-size;
+  container-name: destinos;
+  min-width: 0;
+}
+
+.cards-grid > .card-slot > .card {
+  height: 100%;
 }
 
 /* Tablet ≈ 768px — 2 colunas */
@@ -75,7 +89,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .cards-grid .card--featured {
+  .cards-grid > .card-slot:has(.card--featured) {
     grid-column: span 2;
   }
 }

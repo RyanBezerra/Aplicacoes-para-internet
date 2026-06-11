@@ -1,6 +1,14 @@
 <!DOCTYPE html>
+<!--
+  Paraíba Turismo — landing page demonstrativa
+  Estrutura: HTML5 semântico + ARIA para acessibilidade
+  Seções: header (nav) → main (hero, destinos, cultura, gastro, roteiros, contato) → footer
+  CSS: css/site.bundle.css (gerado por scripts/build-css.ps1)
+  JS: js/main.js (menu, abas, tema, formulário, scroll)
+-->
 <html lang="pt-BR">
 <head>
+  <!-- Metadados, performance (preconnect/preload) e folha de estilos -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Descubra a Paraíba: praias, cultura, história e experiências únicas no Nordeste brasileiro.">
@@ -16,21 +24,19 @@
   <link rel="stylesheet" href="css/site.bundle.css">
 </head>
 <body>
+  <!-- A11y: pula navegação repetitiva e vai direto ao conteúdo -->
   <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
 
+  <!-- CABEÇALHO: sticky, logo + nav + CTA + tema + menu mobile -->
   <header class="site-header" id="topo" tabindex="-1">
     <div class="container header-inner">
+      <!-- Marca: link para o topo da página -->
       <a class="logo" href="#topo" aria-label="Paraíba Turismo — início">
         <span class="logo-mark" aria-hidden="true"></span>
         <span class="logo-text">Paraíba Turismo</span>
       </a>
 
-      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-
+      <!-- Links âncora para cada seção; CTA mobile aparece só no menu expansível -->
       <nav class="site-nav" id="menu-principal" aria-label="Principal">
         <ul class="nav-list">
           <li><a href="#inicio">Início</a></li>
@@ -38,13 +44,45 @@
           <li><a href="#cultura">Cultura</a></li>
           <li><a href="#gastronomia">Gastronomia</a></li>
           <li><a href="#roteiros">Roteiros</a></li>
-          <li><a href="#contato" class="nav-cta">Planejar viagem</a></li>
+          <li class="nav-cta-item">
+            <a href="#contato" class="nav-cta-mobile">Planejar viagem</a>
+          </li>
         </ul>
       </nav>
+
+      <!-- Desktop: CTA + alternância de tema + hambúrguer (mobile) -->
+      <div class="header-actions">
+        <a href="#contato" class="header-cta">Planejar viagem</a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Ativar tema escuro">
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
     </div>
   </header>
 
+  <!-- CONTEÚDO PRINCIPAL: uma única <main> com seções identificadas por id -->
   <main id="conteudo-principal">
+
+    <!-- Hero: único h1 da página + CTAs principais -->
     <section class="hero hero--media" id="inicio" aria-labelledby="hero-title">
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="container hero-grid">
@@ -55,8 +93,8 @@
             Praias de águas mornas, o sol nascer no mar mais oriental das Américas e uma cultura viva em cada cidade. Explore com calma e descubra o melhor do estado.
           </p>
           <div class="hero-actions">
-            <a href="#destinos" class="btn btn-primary">Ver destinos</a>
-            <a href="#roteiros" class="btn btn-secondary">Sugestões de roteiro</a>
+            <a href="#destinos" class="btn btn--primary">Ver destinos</a>
+            <a href="#roteiros" class="btn btn--inverse">Sugestões de roteiro</a>
           </div>
         </div>
         <div class="hero-panel" role="presentation">
@@ -72,6 +110,7 @@
       </div>
     </section>
 
+    <!-- Destinos: grid de cards com container query (.card-slot) -->
     <section class="section section-alt" id="destinos" aria-labelledby="destinos-title">
       <div class="container">
         <header class="section-head">
@@ -80,50 +119,59 @@
         </header>
 
         <div class="cards-grid" role="list">
-          <article class="card card--media card--featured" role="listitem">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&amp;q=80" alt="Orla com coqueiros e mar em dia ensolarado" width="800" height="450" loading="lazy" decoding="async">
-            </div>
-            <div class="card-body">
-              <h3>João Pessoa</h3>
-              <p>Orla de Tambaú e Cabo Branco, Farol do Cabo Branco e centros históricos cheios de charme.</p>
-              <a href="#contato" class="card-link">Quero visitar</a>
-            </div>
-          </article>
-          <article class="card card--media" role="listitem">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&amp;q=80" alt="Multidão em evento ao ar livre com iluminação festiva" width="800" height="450" loading="lazy" decoding="async">
-            </div>
-            <div class="card-body">
-              <h3>Campina Grande</h3>
-              <p>O maior São João do mundo e uma cena cultural e universitária pulsante o ano todo.</p>
-              <a href="#contato" class="card-link">Quero visitar</a>
-            </div>
-          </article>
-          <article class="card card--media" role="listitem">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&amp;q=80" alt="Costa com falésias e mar azul visto de cima" width="800" height="450" loading="lazy" decoding="async">
-            </div>
-            <div class="card-body">
-              <h3>Praias do litoral sul</h3>
-              <p>Tambaba, Coqueirinho e Barra de Gramame — natureza preservada e visual impressionante.</p>
-              <a href="#contato" class="card-link">Quero visitar</a>
-            </div>
-          </article>
-          <article class="card card--media" role="listitem">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&amp;q=80" alt="Paisagem de caatinga com vegetação seca e horizonte amplo" width="800" height="450" loading="lazy" decoding="async">
-            </div>
-            <div class="card-body">
-              <h3>Sertão paraibano</h3>
-              <p>História de cordel, rio São Francisco e cidades como Patos e Cajazeiras.</p>
-              <a href="#contato" class="card-link">Quero visitar</a>
-            </div>
-          </article>
+          <div class="card-slot" role="listitem">
+            <article class="card card--media card--featured">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&amp;q=80" alt="Orla com coqueiros e mar em dia ensolarado" width="800" height="450" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>João Pessoa</h3>
+                <p>Orla de Tambaú e Cabo Branco, Farol do Cabo Branco e centros históricos cheios de charme.</p>
+                <a href="#contato" class="card-link">Quero visitar</a>
+              </div>
+            </article>
+          </div>
+          <div class="card-slot" role="listitem">
+            <article class="card card--media">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&amp;q=80" alt="Multidão em evento ao ar livre com iluminação festiva" width="800" height="450" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>Campina Grande</h3>
+                <p>O maior São João do mundo e uma cena cultural e universitária pulsante o ano todo.</p>
+                <a href="#contato" class="card-link">Quero visitar</a>
+              </div>
+            </article>
+          </div>
+          <div class="card-slot" role="listitem">
+            <article class="card card--media">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&amp;q=80" alt="Costa com falésias e mar azul visto de cima" width="800" height="450" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>Praias do litoral sul</h3>
+                <p>Tambaba, Coqueirinho e Barra de Gramame — natureza preservada e visual impressionante.</p>
+                <a href="#contato" class="card-link">Quero visitar</a>
+              </div>
+            </article>
+          </div>
+          <div class="card-slot" role="listitem">
+            <article class="card card--media">
+              <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&amp;q=80" alt="Paisagem de caatinga com vegetação seca e horizonte amplo" width="800" height="450" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>Sertão paraibano</h3>
+                <p>História de cordel, rio São Francisco e cidades como Patos e Cajazeiras.</p>
+                <a href="#contato" class="card-link">Quero visitar</a>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Cultura: layout split (texto + imagem + citação) -->
     <section class="section" id="cultura" aria-labelledby="cultura-title">
       <div class="container split split--culture">
         <div class="split-text">
@@ -154,6 +202,7 @@
       </div>
     </section>
 
+    <!-- Gastronomia: fundo escuro; tags geradas via JS em #tagsGastro -->
     <section class="section section-accent" id="gastronomia" aria-labelledby="gastro-title">
       <div class="container">
         <header class="section-head section-head-light">
@@ -231,6 +280,7 @@
       </div>
     </section>
 
+    <!-- Roteiros: abas acessíveis (role=tablist, teclado via JS) -->
     <section class="section section-alt" id="roteiros" aria-labelledby="roteiros-title">
       <div class="container">
         <header class="section-head">
@@ -271,6 +321,7 @@
       </div>
     </section>
 
+    <!-- Contato: formulário com validação client-side e feedback aria-live -->
     <section class="section" id="contato" aria-labelledby="contato-title">
       <div class="container narrow">
         <header class="section-head">
@@ -304,13 +355,14 @@
             <textarea id="mensagem" name="mensagem" rows="4" placeholder="Datas, número de pessoas, dúvidas…" aria-describedby="hint-msg"></textarea>
             <span class="field-hint" id="hint-msg">Período da viagem e preferências deixam o planejamento mais próximo da realidade.</span>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Enviar interesse</button>
+          <button type="submit" class="btn btn--primary btn--block">Enviar interesse</button>
           <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
   </main>
 
+  <!-- RODAPÉ: links secundários, voltar ao topo e copyright dinâmico (#anoAtual) -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -328,10 +380,10 @@
     </div>
     <div class="container footer-bottom">
       <p>© <span id="anoAtual"></span> — Feito com HTML, CSS e JavaScript</p>
-      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Ativar tema escuro">Tema escuro</button>
     </div>
   </footer>
 
+  <!-- defer: executa após parse do HTML, sem bloquear render -->
   <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
-/* Navbar — extensões da Aula 09 (Desafio Extra)
-   - Estado .header--scrolled aplicado via JS ao rolar > 80px
-   - Reduz o padding e aumenta a sombra para dar sensação de "fixar"
-   - Mantém compatibilidade com o .site-header já existente em nav.css
+/* Componente: Cabeçalho — estado ao rolar
+   Bloco: .site-header | Modificador: .header--scrolled
+   Estados: transição de sombra/padding ao passar de 80px (JS + requestAnimationFrame)
+   Tokens: --color-header-scrolled-shadow, --color-header-scrolled-bg
 */
 
+/* Transição suave ao entrar no estado .header--scrolled */
 .site-header {
   transition: box-shadow 0.25s ease, padding 0.25s ease,
     background-color 0.25s ease;

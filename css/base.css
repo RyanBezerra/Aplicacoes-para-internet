@@ -1,3 +1,5 @@
+/* Estilos base do documento (tipografia, skip link, inputs) */
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -23,6 +25,7 @@ textarea {
   box-sizing: border-box;
 }
 
+/* Skip link: visível apenas ao receber foco (teclado) */
 .skip-link {
   position: absolute;
   left: -9999px;

@@ -1,5 +1,9 @@
+/*
+  Tokens semânticos — cores e efeitos com significado de UI
+  Consumidos pelos componentes (--color-brand, --color-text, etc.)
+  Tema escuro: sobrescreve variáveis via [data-theme="dark"]
+*/
 :root {
-  /* Checkpoint Aula 10: alterar --color-action-primary atualiza CTAs (.btn-primary, .btn--primary). */
   --color-bg: var(--_neutral-100);
   --color-surface: var(--_white);
   --color-text: var(--_neutral-900);
@@ -12,7 +16,7 @@
   --color-brand: var(--_teal-700);
   --color-brand-hover: var(--_teal-800);
 
-  /* Ação primária (CTAs principais: botões .btn-primary, envio de formulário) */
+  /* Ação primária (CTAs principais: botões .btn--primary, envio de formulário) */
   --color-action-primary: var(--_accent-500);
   --color-action-primary-hover: var(--_accent-600);
 
@@ -48,6 +52,7 @@
   --color-border-interactive: rgba(var(--_rgb-teal-700), 0.35);
   --color-focus-shadow: rgba(var(--_rgb-teal-700), 0.22);
   --color-btn-focus-glow: rgba(var(--_rgb-blue-500), 0.25);
+  --color-btn-ghost-hover-bg: rgba(var(--_rgb-blue-500), 0.12);
 
   --gradient-hero: linear-gradient(
     125deg,
@@ -85,11 +90,12 @@
   --color-text-shadow-hero: rgba(0, 0, 0, 0.2);
 }
 
+/* Sobrescreve tokens do tema claro quando data-theme="dark" no <html> */
 [data-theme="dark"] {
   --color-bg: var(--_gray-950);
   --color-surface: var(--_gray-850);
   --color-text: var(--_neutral-50);
-  --color-muted: #9ca3af;
+  --color-muted: var(--_gray-400);
   --color-border: var(--_gray-700);
   --color-hero-side: var(--_gray-800);
 

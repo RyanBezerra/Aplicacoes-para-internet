@@ -1,3 +1,10 @@
+/* Componente: Gastronomia
+   Bloco: .gastro-card | Elementos: .gastro-card-media, .gastro-card-body, .tag-pill
+   Container: .gastro-grid (container-name: gastro)
+   Estados: :hover (hover: hover); layout via @container gastro
+   Tokens: --color-gastro-card-bg, --color-on-inverse, --color-gastro-body-muted
+*/
+
 .gastro-lead {
   max-width: 62ch;
   margin-inline: auto;

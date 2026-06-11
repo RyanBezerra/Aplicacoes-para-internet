@@ -1,6 +1,8 @@
-/* Botão BEM (Aula 09 — Desafio Extra)
-   Variantes: .btn--primary, .btn--outline, .btn--ghost
-   Usa Custom Properties para cores e estado :focus-visible acessível.
+/* Componente: Botão (BEM)
+   Bloco: .btn
+   Modificadores: .btn--primary | .btn--outline | .btn--inverse | .btn--ghost | .btn--block
+   Estados: :hover (hover: hover), :active, :focus-visible, :disabled, [aria-disabled="true"]
+   Tokens: --color-action-primary, --color-on-action, --color-highlight, --color-btn-focus-glow
 */
 
 .btn {
@@ -16,7 +18,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  padding: 0.65rem 1.25rem;
+  padding: var(--space-3) var(--space-5);
   font-family: inherit;
   font-size: var(--fs-md);
   font-weight: var(--font-weight-semibold);
@@ -31,10 +33,12 @@
     border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-.btn:hover {
-  background: var(--btn-bg-hover);
-  color: var(--btn-fg-hover);
-  border-color: var(--btn-border-hover);
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--btn-bg-hover);
+    color: var(--btn-fg-hover);
+    border-color: var(--btn-border-hover);
+  }
 }
 
 .btn:active {
@@ -53,7 +57,6 @@
   cursor: not-allowed;
 }
 
-/* --- Variante primária --- */
 .btn--primary {
   --btn-bg: var(--color-action-primary);
   --btn-fg: var(--color-on-action);
@@ -64,7 +67,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* --- Variante outline --- */
 .btn--outline {
   --btn-bg: transparent;
   --btn-fg: var(--color-highlight);
@@ -74,12 +76,20 @@
   --btn-border-hover: var(--color-highlight);
 }
 
-/* --- Variante ghost (sem borda nem fundo) --- */
+.btn--inverse {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-on-inverse);
+  --btn-border: var(--color-on-inverse-faint);
+  --btn-bg-hover: var(--color-on-inverse-ghost-hover);
+  --btn-fg-hover: var(--color-on-inverse);
+  --btn-border-hover: var(--color-on-inverse);
+}
+
 .btn--ghost {
   --btn-bg: transparent;
   --btn-fg: var(--color-highlight);
   --btn-border: transparent;
-  --btn-bg-hover: rgba(var(--_rgb-blue-500), 0.12);
+  --btn-bg-hover: var(--color-btn-ghost-hover-bg);
   --btn-fg-hover: var(--color-brand-hover);
   --btn-border-hover: transparent;
 }

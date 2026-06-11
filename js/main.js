@@ -1,6 +1,12 @@
+/**
+ * Paraíba Turismo — JavaScript principal
+ * Escopo fechado (IIFE) para evitar poluir o global.
+ * Responsável por: tema, menu mobile, abas, tags, formulário, scroll e acessibilidade.
+ */
 (function () {
   "use strict";
 
+  /* --- Referências ao DOM (elementos usados em mais de um módulo) --- */
   var navToggle = document.getElementById("navToggle");
   var siteNav = document.getElementById("menu-principal");
   var navLinks = siteNav ? siteNav.querySelectorAll("a[href^='#']") : [];
@@ -11,6 +17,7 @@
   var tagsGastro = document.getElementById("tagsGastro");
   var themeToggle = document.getElementById("themeToggle");
 
+  /* Lista de sabores exibida como tags na seção Gastronomia */
   var sabores = [
     "Tapioca e queijo coalho",
     "Sururu e caldinho",
@@ -26,11 +33,15 @@
     "Caldeirada de frutos do mar",
   ];
 
+  /* Ano dinâmico no rodapé */
   if (anoAtual) {
     anoAtual.textContent = String(new Date().getFullYear());
   }
 
+  /* --- Tema claro/escuro (persistido em localStorage) --- */
   var THEME_KEY = "pb-theme";
+
+  /** Aplica tema e atualiza ARIA do botão no header */
   function applyTheme(mode) {
     var root = document.documentElement;
     if (mode === "dark") {
@@ -45,12 +56,11 @@
         "aria-label",
         isDark ? "Ativar tema claro" : "Ativar tema escuro"
       );
-      themeToggle.textContent = isDark ? "Tema claro" : "Tema escuro";
     }
     try {
       localStorage.setItem(THEME_KEY, mode);
     } catch (e) {
-      /* ignore */
+      /* localStorage indisponível (modo privado etc.) */
     }
   }
 
@@ -64,6 +74,7 @@
     });
   }
 
+  /* Restaura preferência salva na visita anterior */
   try {
     var storedTheme = localStorage.getItem(THEME_KEY);
     if (storedTheme === "dark" || storedTheme === "light") {
@@ -73,6 +84,7 @@
     /* ignore */
   }
 
+  /* --- Menu mobile (hambúrguer) --- */
   function closeMenu() {
     if (!siteNav || !navToggle) return;
     siteNav.classList.remove("is-open");
@@ -96,6 +108,7 @@
       }
     });
 
+    /* Fecha ao clicar em link (mobile) */
     navLinks.forEach(function (link) {
       link.addEventListener("click", function () {
         if (window.matchMedia("(max-width: 860px)").matches) {
@@ -109,6 +122,7 @@
     });
   }
 
+  /* --- Abas de roteiros (padrão WAI-ARIA tabs + teclado) --- */
   var tabsRoot = document.querySelector("[data-tabs]");
   if (tabsRoot) {
     var tabButtons = tabsRoot.querySelectorAll('[role="tab"]');
@@ -134,6 +148,7 @@
         activateTab(btn);
       });
 
+      /* Setas, Home e End movem foco entre abas */
       btn.addEventListener("keydown", function (e) {
         var nextIndex = index;
         if (e.key === "ArrowRight" || e.key === "ArrowDown") {
@@ -157,6 +172,7 @@
     });
   }
 
+  /* --- Tags de gastronomia (geradas a partir do array sabores) --- */
   if (tagsGastro) {
     var frag = document.createDocumentFragment();
     sabores.forEach(function (texto) {
@@ -170,6 +186,7 @@
     tagsGastro.setAttribute("role", "list");
   }
 
+  /* --- Formulário de contato (validação demonstrativa, sem backend) --- */
   if (form && feedback) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -202,6 +219,7 @@
     });
   }
 
+  /* --- Voltar ao topo com foco no header (acessibilidade) --- */
   if (btnTopo) {
     btnTopo.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -210,8 +228,7 @@
     });
   }
 
-  // Aula 09 — Desafio Extra: aplicar .header--scrolled após 80px de rolagem.
-  // Usa requestAnimationFrame para suavizar o evento de scroll.
+  /* --- Header compacto após rolar (requestAnimationFrame = performance) --- */
   var siteHeader = document.querySelector(".site-header");
   if (siteHeader) {
     var scrollTicking = false;
@@ -237,7 +254,7 @@
     updateHeaderState();
   }
 
-  /* Aula 11 — indicador de navegação por teclado (Tab) */
+  /* --- Foco visível só ao navegar por Tab (classe em body) --- */
   document.body.addEventListener("keydown", function (e) {
     if (e.key === "Tab") {
       document.body.classList.add("using-keyboard");
@@ -246,5 +263,4 @@
   document.body.addEventListener("mousedown", function () {
     document.body.classList.remove("using-keyboard");
   });
-
 })();
